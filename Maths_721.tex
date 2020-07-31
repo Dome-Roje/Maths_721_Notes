@@ -1,0 +1,560 @@
+\documentclass[11pt, notitlepage]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathdots}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{cool}
+\usepackage{parskip}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows.meta, chains}
+\usepackage[a4paper]{geometry}
+\usepackage{tensor}
+
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage[nottoc]{tocbibind}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textit{\rightmark}}
+\fancyfoot[C]{Page \thepage}
+
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = *}
+
+
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+
+
+\renewcommand{\footrulewidth}{0.5pt}
+
+\bibliographystyle{alpha}
+\addto\captionsenglish{\renewcommand{\bibname}{References}}
+
+%\usepackage[backref=page,pagebackref=true,linkcolor = blue,citecolor = red]{hyperref}
+%\usepackage[backref=page]{backref}
+
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}{Problem}
+\newtheorem{remarkx}{Remark}
+\newenvironment{remark}
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\blacklozenge$}\remarkx}
+	{\popQED\endremarkx}
+	
+\newtheorem{examplex}[theorem]{Example}
+\newenvironment{example}
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\blacktriangleleft$}\examplex}
+	{\popQED\endexamplex}
+
+
+% Syntax for below is \cv{a_1,a_2,...,a_n}.
+% Creates a square bracketed column vector.
+\makeatletter
+\newcommand{\cv}[2][r]{%
+  \gdef\@VORNE{1}
+  \left[\hskip-\arraycolsep%
+    \begin{array}{#1}\vekSp@lten{#2}\end{array}%
+    \hskip-\arraycolsep\right]}
+
+\def\vekSp@lten#1{\xvekSp@lten#1,vekL@stLine,}
+\def\vekL@stLine{vekL@stLine}
+\def\xvekSp@lten#1,{\def\temp{#1}%
+  \ifx\temp\vekL@stLine
+  \else
+    \ifnum\@VORNE=1\gdef\@VORNE{0}
+    \else\@arraycr\fi%
+    #1%
+    \expandafter\xvekSp@lten
+  \fi}
+\makeatother
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\T}{\mathbb{T}}
+\renewcommand{\E}{\mathbb{E}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\sph}{\mathbb{S}}
+\newcommand{\Halfspace}{\mathbb{H}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\tbasis}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\extp}[1]{\bigwedge\nolimits^{#1}}
+
+
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\cis}{cis}
+\let\Arg\relax
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\nul}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\Mat}{Mat}
+\let\hom\relax
+\DeclareMathOperator{\hom}{Hom}
+\DeclareMathOperator{\epi}{epi}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Aff}{Aff}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Isom}{\textbf{Isom}}
+\DeclareMathOperator{\gen}{gen}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Sub}{\textbf{Sub}}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\exterior}{Ext}
+\DeclareMathOperator{\interior}{Int}
+\DeclareMathOperator{\identity}{Id}
+\DeclareMathOperator{\orthogonal}{O}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imagine}{Im}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\SRW}{SRW}
+\DeclareMathOperator{\Markov}{Markov}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Poisson}{Poisson}
+\DeclareMathOperator{\Geometric}{Geometric}
+\DeclareMathOperator{\Exponential}{Exp}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\unitary}{U}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\inprod}{\lrcorner}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\first}{I}
+\DeclareMathOperator{\second}{II}
+\DeclareMathOperator{\third}{III}
+\DeclareMathOperator{\projection}{pr}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\SO}{SO}
+
+
+\def\*#1{\mathbf{#1}}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\normsub}{\unlhd}
+\newcommand{\snormsub}{\lhd}
+\title{Maths 721 Notes}
+\date{2020}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\vspace{5mm}
+
+
+% -------------------------------------------------------------------
+% LECTURE 1
+% -------------------------------------------------------------------
+
+\pagebreak
+
+\section{Lecture 1}
+
+
+In the first half of this course we will cover three main topics:
+\begin{itemize}
+    \item representations;
+    \item modules;
+    \item characters.
+\end{itemize}
+We will further see that representations and modules are essentially the same, and that modules and characters are essentially the same; and hence all three are essentially the same.
+
+From now on $G$ is a group.
+
+
+
+\subsection{Representations}
+
+
+\begin{definition}
+A \textbf{representation} of a group $G$ over a field $F$ is a group homomorphism from $G$ to $\GL(n,F)$, where $n$ is the \textbf{degree} of the representation. 
+\end{definition}
+
+Explicitly, a representation is a function $\rho : G \to \GL(n,F)$ such that for all $g,h \in G$;
+\begin{enumerate}[label=(\roman*)]
+    \item $(gh)\rho = (g\rho)(h\rho)$,
+    \item $1_G\rho = I_n$,
+    \item $g^{-1}\rho = (g\rho)^{-1}$.
+\end{enumerate}
+Note the use of the (incredibly shit) postfix function notation.
+
+\begin{example}
+Take $D_4$, the Dihedral group of order 8. It has the following group presentations
+\begin{align*}
+    D_4 &= \langle a,b \mid a^4 = 1, b^2 = 1, a^b = a^{-1} \rangle\\
+    &\cong \langle (1 \; 2 \; 3 \; 4), (1 \; 4)(2 \; 3) \rangle,
+\end{align*}
+where $a^b = bab^{-1}$ is conjugation of $a$ by $b$. By defining the matrix subgroup
+\[
+    H = \left\langle A = \begin{bmatrix*}[r]
+        0 & 1\\
+        -1 & 0
+    \end{bmatrix*}, B = \begin{bmatrix*}[r]
+        1 & 0\\
+        0 & -1
+    \end{bmatrix*}\right\rangle
+\]
+and defining $\rho : D_4 \to \GL(n,F)$ where $F = \R, \C$, by $a \mapsto A$ and $b \mapsto B$, and
+$a^ib^j \mapsto A^iB^j$ for $0 \le i \le 3$, and $0 \le j \le 1$. Hence we have $\rho$ is a representation of $D_4$ over $F$.
+\end{example}
+
+\begin{example}
+Take $\Q_8$ the Quaternion group of order 8, which has the following group presentations
+\begin{align*}
+    \Q_8 &= \langle a,b \mid a^4 = 1, a^2 = b^2, a^b = a^{-1}\rangle\\
+    &\cong \langle \bar a = (1 \; 6 \; 2 \; 5)(3 \; 8 \; 4 \; 7), \bar b = (1 \; 4 \; 2 \; 3)(5 \; 7 \; 6 \; 8)\rangle
+\end{align*}
+Define
+\[
+    H = \left\langle A = \begin{bmatrix*}[r]
+        i & 0\\
+        0 & -i
+    \end{bmatrix*}, B = \begin{bmatrix*}[r]
+        0 & 1\\
+        -1 & 0
+    \end{bmatrix*}\right\rangle \subset \GL(2,\C).
+\]
+Then $\rho : \Q_8 \to \GL(2,\C)$ defined by $a^kb^\ell \mapsto A^kB^\ell$ is a group representation of $\Q_8$ over $\C$ of degree 2.
+\end{example}
+
+
+\begin{definition}
+Let $G$ be a group and define
+\begin{align*}
+    \rho : G &\to \GL(n,F)\\
+    g\rho &= I_n
+\end{align*}
+for all $g \in G$. Then $\rho$ is a representation, called the \textbf{trivial representation} of arbitrary of degree.
+\end{definition}
+
+It follows from the trivial representation that any group $G$ has a representation of an arbitrary degree.
+
+Let $\rho : G \to \GL(n,F)$ be a group homomorphism, and take $T \in \GL(n,F)$. Then
+\[
+    (T^{-1}AT)(T^{-1}BT) = T^{-1}(AB)T.
+\]
+Thus, given $\rho$ define $\sigma$ such that
+\[
+    g\sigma = T^{-1}(g\rho)T
+\]
+for all $g \in G$. As for all $g,h \in G$, one has
+\begin{align*}
+    (gh)\sigma &= T^{-1}\big((gh)\rho\big)T\\
+    &= T^{-1}(g\rho)(h\rho)T\\
+    &= T^{-1}(g\rho)TT^{-1}(h\rho)T\\
+    &= (g\sigma)(h\sigma),
+\end{align*}
+and so $\sigma$ is a group homomorphism; and hence a representation.
+
+\begin{definition}
+Define
+\[
+    \rho : G \to \GL(m,F), \qquad \sigma : G \to \GL(n,F)
+\]
+to both be representation of $G$ over $F$. We say that \textbf{$\rho$ is equivalent to $\sigma$} if $n=m$ and there exists $T \in \GL(n,F)$ such that $g\sigma = T^{-1}(g\rho)T$.
+\end{definition}
+
+\begin{proposition}
+Equivalence of representations is an equivalence relation.
+\end{proposition}
+
+\begin{proof}
+Reflexivity is clear by taking $T = I_n$. For symmetry, take $T$ to be its inverse. For transitivity, if
+\[
+    g\sigma = T^{-1}(g\rho)T, \qquad g\rho = S^{-1}(g\eta)S,
+\]
+then
+\[
+    g\sigma = (ST)^{-1}(g\eta)(ST).
+\]
+\end{proof}
+
+\begin{definition}
+Define the \textbf{kernel} of the representation $\rho : G \to \GL(n,F)$ as $\ker \rho = \{g \in G \mid g\rho = I_n\}$.
+\end{definition}
+
+\begin{proposition}
+The kernel of a representation of $G$ is a normal subgroup of $G$; i.e. $\ker \rho \lhd G$.
+\end{proposition}
+
+\begin{proof}
+Suppose $g \in \ker \rho$ and $h \in G$ is arbitrary. Then
+\[
+    (hgh^{-1})\rho = (h\rho)(g\rho)(h^{-1}\rho) = (h\rho)I_n(h\rho)^{-1} = (h\rho)(h\rho)^{-1} = I_n,
+\]
+and so $hgh^{-1} \in \ker \rho$. As $\ker \rho$ is closed under conjugation, it is a normal subgroup of $G$.
+\end{proof}
+
+\begin{definition}
+We say $\rho$ is a \textbf{faithful} representation of $G$ if $\ker \rho = \{1_G\}$. 
+\end{definition}
+
+\begin{example}
+For the trivial representation $\rho : G \to \GL(n,F)$ with $g \mapsto I_n$ for all $g \in G$, we have $\ker \rho = G$. Hence the representation is not faithful.
+\end{example}
+
+\begin{lemma}
+Suppose $G$ is a finite group, and $\rho$ is a representation of $G$ over $F$. Then $\rho$ is faithful if, and only if, $\im \rho \cong G$.
+\end{lemma}
+
+\begin{proof}
+Immediate from the first isomorphism theorem.
+\end{proof}
+
+
+
+\subsection{$FG$-Modules}
+
+
+
+Suppose $G$ is a group, and $F = \R,\C$. Given $\rho : G \to \GL(n,F)$, with $V = F^n$, let $v = (\lambda_1,\dots,\lambda_n) \in V$ for $\lambda_i \in F$ be a row vector. Moreover, note that $g\rho$ is an $n \times n$ matrix for all $g \in G$. Thus, we have $v \cdot (g\rho) \in V$, and satisfies the following properties:
+\begin{enumerate}[label=(\roman*)]
+    \item $v \cdot \big( (gh)\rho \big) = v \cdot (g\rho)(h\rho)$;
+    \item $v \cdot (1_G\rho) = v$;
+    \item $(\lambda v) \cdot (g\rho) = \lambda \big( v \cdot (g\rho) \big)$;
+    \item $(u + v) \cdot (g\rho) = u \cdot (g\rho) + v \cdot (g\rho)$.
+\end{enumerate}
+
+We often will omitted the $\cdot$ in the operation, and write $v(a\rho)$ for $v \cdot (a\rho)$.
+
+\begin{example}
+Recall $D_4$ and its given presentation from a previous example. We have
+\[
+    a\rho = \begin{bmatrix*}[r]
+        0 & 1\\
+        -1 & 0
+    \end{bmatrix*}, \qquad b\rho = \begin{bmatrix*}[r]
+        1 & 0\\
+        0 & -1
+    \end{bmatrix*}.
+\]
+If $v = (\lambda_1,\lambda_2)$, then we have
+\[
+    v(a\rho) = (-\lambda_2,\lambda_1), \qquad v(b\rho) = (\lambda_1,-\lambda_2).
+\]
+\end{example}
+
+
+\begin{definition}
+Let $V$ a vector space over the field $F = \R,\C$, and let $G$ be a group. We say $V$ is a \textbf{$FG$-module} if a multiplication $v \cdot g$ for $v \in V$, and $g \in G$ is defined such that:
+\begin{enumerate}[label=(\roman*)]
+    \item $v \cdot g \in V$;
+    \item $v \cdot (gh) = (v \cdot g) \cdot h$;
+    \item $v \cdot 1_G = v$;
+    \item $(\lambda v) \cdot g = \lambda(v \cdot g)$;
+    \item $(u + v) \cdot g = u \cdot g + v \cdot g$.
+\end{enumerate}
+\end{definition}
+
+This generalises the previous discussion from a matrix group to an arbitrary group.
+
+Note that properties (i), (iv), and (v) imply that the map $v \mapsto v \cdot g$ is an endomorphism of $V$ (a linear map from $V$ to itself).
+
+\begin{definition}
+Suppose $V$ is an $FG$-module and $B$ is a basis for $V$. For $g \in G$, let $[g]_B$ denote the matrix of the endomorphism $v \mapsto v \cdot g$ of $V$ relative to the basis $B$.
+\end{definition}
+
+
+\section{Lecture 2}
+
+
+\begin{theorem}
+Let $\rho: G \to GL(n,F)$ be a representation of $G$ over $F$.
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+	\item If $V=F^n$ is an $FG$ module and $G$ acts on $V$ by $v \cdot g = v (g\rho)$ there exists a basis $B$ of $V$ such that $g\rho = [g]_B$.
+	\item The map $g \mapsto [g]_B$ is a representation for $G$ over $F$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+%Continue
+Choose the standard basis $B = [e_1, \ldots, e_n]$.
+
+Since $V$ is an $FG$-module we have $v(gh) = (vg)h$ for all $g, h \in G$ and $v \in V$. Thus $[gh]_B = [g]_B [h]_B$ so the map is a homomorphism. We now check that $[g]_B$ is invertable for all $g \in G$. We know $v \cdot 1_G = (v g) g^{-1}$ so $I_n = [g]_B [g^{-1}]_B$ and thus $[g]_B$ has an inverse.
+\end{proof}
+
+\begin{example}
+	Recall the representation of $G=D_4$ from a previous example. Define an $FG$-module $V=F^2$ with the action defined by taking $vg$ to $v(g\rho)$.
+\begin{align*}
+	v_1 &= (1,0), \quad v_1 a = v_2, \quad v_1 b = v_1,\\
+	v_2 &= (0,1), \quad v_1 a = -v_1, \quad v_1 b = -v_2.
+\end{align*}	
+In this basis we recover our representation
+\[
+	a \mapsto [a]_B = \begin{bmatrix} 0 & 1\\ -1 & 0 \end{bmatrix}, \quad
+	b \mapsto [b]_B = \begin{bmatrix} 1 & 0\\ 0 & -1 \end{bmatrix}.
+\]
+\end{example}
+
+%Similar exercise but for Q8.
+
+We now provide an equivalent basis-dependent definition for an $FG$-module.
+\begin{lemma}
+	Let $V$ a vector space over the field $F = \R,\C$ with basis $B = [v_1, \ldots, v_n]$, and let $G$ be a group. If a multiplication $v \cdot g$ for $v \in B$, and $g \in G$ is defined such that:
+\begin{enumerate}[label=(\roman*)]
+    \item $v \cdot g \in V$;
+    \item $v \cdot (gh) = (v \cdot g) \cdot h$;
+    \item $v \cdot 1_G = v$;
+    \item $\left( \sum_{i=1}^n \lambda_i v_i \right) \cdot g = \sum_{i=1}^n \lambda_i (v_i \cdot g)$ for all $\lambda_i \in F$;
+\end{enumerate}
+then $V$ is an $FG$-module.
+\end{lemma}
+
+%proof?
+
+\begin{definition}
+The trivial module of a group over $F$ is a one dimensional vector space $V$ over $F$ such that $v g = v$ for all $v \in V$ and $g \in G$.
+\end{definition}
+
+\begin{definition}
+An $FG$-module is faithful if $1_G$ is the only $g \in G$ such that $v g = v$ for all $v \in V$.
+\end{definition}
+
+%Representations are equivelent for all choices of basis
+
+\begin{theorem}
+Let $V$ be an $FG$-module with basis $B$ and $\rho$ a representation of group $G$ over $F$ defined by taking $g \mapsto [g]_B$.
+\begin{enumerate}[label=(\roman*)]
+	\item If $B^\prime$ is another basis of $V$ then the map $g \mapsto [g]_{B^\prime}$ is a representation of $G$ equivalent to $\rho$.
+	\item If representation $\sigma$ is equivalent to $\rho$ then there exists basis $B^{\prime\prime}$ such that $\sigma(g) = [g]_{B^{\prime\prime}}$ for all $g \in G$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Taking $T$ to be the change of basis matrices, the two representations are equivalent.
+\end{proof}
+
+\begin{example}
+	Let $G = C_3 = \langle a \mid a^3 = 1 \rangle$ and representation $\rho: G \to GL(n,F)$ defined by
+\[
+	a \mapsto \begin{bmatrix} 0 & 1 \\ -1 & -1 \end{bmatrix}.
+\]
+	We attempt to construct an $FG$-module with group action described by $\rho$. Take $V = F^2$ with basis $B = [v_1, v_2]$. Define the action of $G$ on $V$ by
+\[
+	v_1 a = v_2, \quad v_2 a = -v_1 - v_2.
+\]
+	Let us now choose alternate basis $B^\prime = [u_1 = v_1, u_2 = v_1 + v_2]$. The action of $G$ on this basis is described by
+\[
+	u_1 a = -u_1 + u_2, \quad u_2 a = -u_1.
+\]
+This gives us a representation
+\[
+	a \mapsto [a]_{B^\prime} = \begin{bmatrix} -1 & 1\\ -1 & 0 \end{bmatrix}.
+\]
+To verify this construction we write our change of basis matrix as
+\[
+	T = \begin{bmatrix} 1 & 0\\ 1 & 1 \end{bmatrix}
+\]
+and verify that
+\[
+	\begin{bmatrix} 1 & 0\\ 1 & 1 \end{bmatrix}
+	\begin{bmatrix} 0 & 1\\ -1 & -1 \end{bmatrix}
+	\begin{bmatrix} 1 & 0\\ 1 & 1 \end{bmatrix}^{-1} = 
+	\begin{bmatrix} -1 & 1\\ -1 & 0 \end{bmatrix}.
+\]
+\end{example}
+
+\begin{definition}
+	The permutation module of a group $G \leq S_n$ is an $n$-dimensional vector space $V$ with basis $B = [v_1, \ldots, v_n]$ and action by $G$ defined by
+\[
+	v_i g = v_{ig}
+\]
+for all $g \in G$ where $ig$ is the image of $i$ under $g \in S_n$.
+\end{definition}
+
+%Show that the permutation module is an FG-module.
+
+It follows from Caley's theorem that every group has a faithful $FG$-module.
+
+\begin{example}
+Take $G = S_4$ and pick $g = (1\;2)$ and $h = (1\;2\;3\;4)$. We have representations
+\[
+[g]_B = \begin{bmatrix} 0&1&0&0\\ 1&0&0&0\\ 0&0&1&0\\ 0&0&0&1 \end{bmatrix}, \quad
+[h]_B = \begin{bmatrix} 0&1&0&0\\ 0&0&1&0\\ 0&0&0&1\\ 1&0&0&0 \end{bmatrix}.
+\]
+\end{example}
+
+
+\subsection{Module Reducibility}
+
+
+
+\begin{definition}
+Let $V$ be an $FG$-module. We call $W$ a submodule of $V$ if $W$ is a vector subspace of $V$ and $W$ is closed under the action of $G$. We then write $W<V$.
+\end{definition}
+
+\begin{example}
+Let $G=C_3=\langle (1\;2\;3)\rangle$ and $V$ the presentation module of $G$ with basis $B=[v_1,v_2,v_3]$. The subspace $W=\langle v_1 + v_2 + v_3 \rangle$ is a submodule but the subspace $U=\langle v_1 + v_2 \rangle$ is not.
+
+For example, consider the action of $g = (1\;2\;3)$ on $v_1 + v_2 \in U$. 
+\[
+	(v_1 + v_2)g = v_{1g} + v_{2g} = v_2 + v_3 \not\in U
+\]
+whereas $G$ acts on $W$ trivially.
+\end{example}
+
+
+
+
+\end{document}
