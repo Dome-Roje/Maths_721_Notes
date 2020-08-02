@@ -545,7 +545,7 @@ Let $V$ be an $FG$-module. We call $W$ a submodule of $V$ if $W$ is a vector sub
 \end{definition}
 
 \begin{example}
-Let $G=C_3=\langle (1\;2\;3)\rangle$ and $V$ the presentation module of $G$ with basis $B=[v_1,v_2,v_3]$. The subspace $W=\langle v_1 + v_2 + v_3 \rangle$ is a submodule but the subspace $U=\langle v_1 + v_2 \rangle$ is not.
+Let $G=C_3=\langle (1\;2\;3)\rangle$ and $V$ the permutation module of $G$ with basis $B=[v_1,v_2,v_3]$. The subspace $W=\langle v_1 + v_2 + v_3 \rangle$ is a submodule but the subspace $U=\langle v_1 + v_2 \rangle$ is not.
 
 For example, consider the action of $g = (1\;2\;3)$ on $v_1 + v_2 \in U$. 
 \[
@@ -555,8 +555,131 @@ whereas $G$ acts on $W$ trivially.
 \end{example}
 \section{Lecture 3}
 
-Simon's first section
+\subsection{Module and Representation Reducibility}
 
+For any module, it is clear that we have two trivial submodules: $0<v$ and $V<V$. Where $0 = \{0\}\subset V$.
 
+\begin{definition}
+	Let $V$ be an FG-module. We say that $V$ is irreducible if the only submodules of $V$ are $V$ and $0$. Otherwise $V$ is reducible
+\end{definition}
 
+In 2.11 we showed that the permutation module of $C_3$ is reducible.
+
+\begin{definition}
+	Let $\rho:G\rightarrow GL(n,F)$ be a representation. We say that $\rho$ is irreducible if the corresponding $FG$-module (as constructed in 2.1) is irreducible. Otherwise $\rho$ is reducible.
+\end{definition}
+
+If an $FG$-module, $V$  is reducible, that is, $0<W<V$, $0\neq W\neq V$. Let $B_W$ be a basis for $W$. If we extend $B_W$ to $B$ a basis of $V$, then we get the following representation of $G$:
+
+\begin{equation}\label{eq:3.1}
+	g\mapsto [g]_B = \begin{bmatrix}
+		X_g & 0\\Y_g & Z_g
+	\end{bmatrix}
+\end{equation}
+Where the matrices $X_g,Y_g$ and $Z_g$ are some block matrices and $0$ is a block of zeros and $X_g$ has the dimensions $m\times m$ and, in this case, $\operatorname{dim}(W)=m$.
+	
+\begin{proposition}
+	A representation $\rho:G\rightarrow GL(n,F)$ is reducible if and only if with respect to some basis, $B$, of $F^n$, $[g]_B$ has the form \ref{eq:3.1} for some $0<m<\operatorname{dim}(V)$ for all $g\in G$. Then the maps $g\mapsto X_g$ and $g\mapsto Z_g$ are both representations of $G$.
+\end{proposition}
+
+\begin{proof}
+	Suppose we have a presentation, $\rho:G\rightarrow GL(n,F)$ and a basis $B$ of $V = F^n$ such that $[g]_B$ has the form \ref{eq:3.1} for every $g\in G$. Then consider the subspace $0\subset W\subset V$ spanned by the first $m$ elements of $B$. It is clear that $v[g]_B\in W$ for all $v\in W$. Therefore the module induced by $\rho$ is reducible, so $\rho$ is reducible. Now, if we have a reducible representation, then the argument above this proposition shows that with respect to any basis extending $B_W$, the matrices $[g]_B$ have the required form.\\
+	Now, using elementary block matrix multiplication, we get the following for $g,h\in G$: 
+	\[\rho(g)\rho(h) = [g]_B[h]_B = \begin{bmatrix}
+	X_gX_h & 0\\
+	Y_gX_h+Z_gY_h & Z_gZ_h
+	\end{bmatrix} = [gh]_B=\rho(gh)\]
+	Therefore $X_{gh} = X_gX_h$ and $Z_{gh} = Z_gZ_h$, so the maps $g\mapsto X_g$ and $g\mapsto Z_g$ are both representations of $G$.
+\end{proof}
+
+\begin{problem}
+	Prove that the example representation of $D_8$ of degree 2 over $\R$ or $\C$ is irreducible.
+\end{problem}
+
+\subsection{Group Algebras}
+
+Recall that an algebra over a field $F$ is a  vector space over $F$ equipped with a bilinear product $A\times A\rightarrow A$ that is compatible with scalar multiplication.
+
+\begin{definition}
+	The group algebra over a finite group $G$ over a field $F$ is an algebra\footnote{See Lemma\ref{le:3.6} } of dimension $n = |G|$ over $F=\R$ or $\C$ called $FG$, with basis $B=G = \{g_1,\dots g_n\}$. Where the algebra structure is given by the following for two arbitrary elements of $FG$, $u = \sum_{g\in G}\lambda_gg$, $v = \sum_{g\in G}\mu_g$, $\lambda_g,\mu_g\in F$ and $\nu\in F$:
+	\begin{enumerate}
+		\item $u+v = \sum_{i=1}^n(\lambda_i+\mu_i)g_i$\\
+		\item $\nu \cdot u = \sum_{i=1}^{n}(\nu\lambda_i)g_i$\\
+		\item $u\cdot v = \sum_{(h,g)\in G\times G}\lambda_g\mu_h(gh)$
+	\end{enumerate}
+\end{definition}
+
+This is clearly a vector space.
+
+\begin{example}
+	Consider $G = C_3 = \{e,a,a^2\} = \langle a|a^3=e\rangle$ and $F=\R$ or $\C$. Then if we let $u = e-a+2a^2$, $v=\frac{1}{2}e+5a$, then:
+	\[u+v = \frac{3}{2}e+4a+2a^2,\quad \frac{1}{3}u = \frac{1}{3}e-\frac{1}{3}a+\frac{2}{3}a^2,\quad uv = \frac{21}{2}e+\frac{9}{2}a-4a^2\]
+\end{example}
+\begin{lemma}\label{le:3.6}
+	Given a group algebra $FG$, $r,s,t\in FG$, $\lambda\in F$:
+	\begin{enumerate}
+		\item $rs\in FG$\\
+		\item $(rs)t = r(st)$\\
+		\item $1_Gr=r1_G=r$\\
+		\item $(\lambda r)s=\lambda(rs)$\\
+		\item $(r+s)t=rt+st$\\
+		\item $r(s+t)=rs+rt$\\
+		\item $r0=0r=0$
+	\end{enumerate}
+That is, $FG$ is an associative algebra with unit
+\end{lemma}
+\begin{proof}
+	1,3 and 7 are clear from the definition of $FG$, 4,5 and 6 follow from the distributive and associative laws of $F$ and 2 follows from associativity in $G$.
+\end{proof}
+\subsection{The Regular FG-module, FG}
+\begin{problem}
+	$V=FG$ is an $FG$-module with the group action defined by $v\cdot g=vg$ for $v\in FG$, $g\in G\subset FG$.
+\end{problem}
+\begin{definition}
+	For a finite group $G$ and $F=\R$ or $\C$, the regular $FG$-module is $FG$. The associated module, $g\mapsto [g]_B$ is called the regular representation.
+\end{definition}
+\begin{lemma}
+	$FG$ is a faithful module for $G$ over $F$
+\end{lemma}
+\begin{proof}
+	If $vg=v$ for all $v\in FG$, then specifically, $hg=h$ for all $h\in G$, so $g=1_G$.
+\end{proof}
+\begin{example}
+	For $C=C_3$, over the basis $B=G$, we get:
+	\[[e]_B=I_3,\quad [a]_B = \begin{bmatrix}
+	0&1&0\\0&0&1\\1&0&0
+	\end{bmatrix},\quad[a^2]_B=\begin{bmatrix}
+	0&0&1\\1&0&0\\0&1&0
+	\end{bmatrix}\]
+\end{example}
+Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
+\[v\cdot r = v\cdot \left(\sum_{g\in G}\mu_g g\right) = \sum_{g\in G}\mu_g(v\cdot g)\]
+\begin{lemma}
+	For $u,v\in V$, $\lambda\in F$, $r,s\in FG$:
+	\begin{enumerate}
+		\item $vr\in FG$\\
+		\item $(vr)s = v(rs)$\\
+		\item $v1=v$\\
+		\item $(\lambda v)r=\lambda(vr)=v(\lambda r)$\\
+		\item $(r+s)v=rv+sv$\\
+		\item $r(u+v)=ru+rv$\\
+		\item $r0=v0=0$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	1,3 and the first part of 7 follow from $V$ being an $FG$-module, the second equality of $7$ follows from scalar multiplication by 0 in $V$. The following calculation:
+	\begin{align*}
+	(\lambda v)r &= \sum_{g\in G}\mu_g((\lambda v)g)\\
+	&=\sum_{g\in G}\mu_g(\lambda (vg))\\
+	&=\sum_{g\in G}(\lambda \mu_g)(vg)=v(\lambda r)\\
+	&=\lambda\sum_{g\in G}\mu_g (vg)\\
+	&=\lambda(vg)\\
+	\end{align*}proves 4. 6 follows from the linearity of the action of $G$ on $V$. 5 follows from distributivity of scalar multiplication in $V$. Finally, to prove 2:
+	\begin{align*}
+	v(rs)&=\sum_{(g,h)\in G\times G}(\mu_g\lambda_h(v(gh)))\\
+	&= \sum_{h\in G}\lambda_h\sum_{g\in G}\mu_g(gv)h\\
+	&= \sum_{h\in G}\lambda_h\left(\sum_{g\in G}\mu_g(gv)\right)h\\
+	&=\sum_{h\in G}\lambda_h(vr)h=(vr)s
+	\end{align*}
+\end{proof}
 \end{document}
