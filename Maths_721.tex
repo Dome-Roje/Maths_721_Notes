@@ -682,4 +682,58 @@ Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 	&=\sum_{h\in G}\lambda_h(vr)h=(vr)s
 	\end{align*}
 \end{proof}
+
+% -------------------------------------------------------------------
+% LECTURE 4
+% -------------------------------------------------------------------
+\section{Lecture 4}
+In this lecture we look at morphisms of $FG$-modules. 
+
+\begin{definition}
+	Let $V$ and $W$ be $FG$-modules. A \textit{homomorphism} of $FG$-modules is a map $\sigma: V \rightarrow W$ which is a linear transformation and also satisfies $(vg)\sigma = (v\sigma)g$ for all $g\in G, v\in V$. The \textit{kernel} and \textit{image} are defined in the obvious way
+\end{definition}
+Equivalently, it is a homomorphism of modules over the ring $FG$. Indeed:
+\begin{problem}
+	Suppose $r\in FG$ is an element of the group algebra. Prove that $(vr)\sigma = (v\sigma)r$.
+\end{problem}
+
+
+
+\begin{lemma}
+	Let $\sigma: V \rightarrow W$ be a homomorphism of $FG$-algebras. Then the kernel and image of $\sigma$ are submodules
+\end{lemma}
+\begin{proof}
+	This is a matter of simple checking, which will be left to the reader.
+\end{proof}
+
+\begin{example}
+	Take $\sigma: V \rightarrow V$ to be $v \mapsto \lambda v$ for some $\lambda \in F^*$. Then $\ker \sigma = 0, \im \sigma = V$. 
+\end{example}
+\begin{example}
+	Let $G = S_n$ and $V = \langle v_1,..., v_n \rangle$ be the permutation module for $G$ over $F$, and let $W = \langle w \rangle$ be the trivial module. Now define $\sigma: V \rightarrow W$ by $$\sum \lambda_i v_i \mapsto \sum \lambda_i w$$ Then $\ker \sigma = \{\sum \lambda_i v_i \mid \sum \lambda_i = 0\}$ and $\im \sigma = W$. 
+\end{example}
+
+\begin{definition}
+	A homomorphism of $FG$-modules is an isomorphism if it is bijective
+\end{definition}
+\begin{remark}
+	The notes originally said "if the homomorphism has trivial kernel". However, this is definitely not correct because inclusions are always homomorphisms, but obviously not isomorphisms. 
+\end{remark}
+
+\begin{lemma}
+	The inverse of an isomorphism is an isomorphism
+\end{lemma}
+\begin{proof}
+	Once again, this is just an exercise in checking. The details will be left for the reader.
+\end{proof}
+Some rather obvious invariants of $FG$-modules (under isomorphism) are dimension and irreducibility.
+\begin{lemma}
+	$V$ and $W$ are isomorphic if and only if there exists bases $\mathcal{B}_1$ of $V$ and $\mathcal{B}_2$ of $W$ such that $$[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}$$ for all $g$.
+\end{lemma}
+\begin{proof}
+	Suppose firstly that $V$ and $W$ are isomorphic, and let $\sigma: V \rightarrow W$ be one such isomorphism. Let $\mathcal{B}_1 = \{v_1,...,v_n\}$ be a basis for $V$. In particular, it is linearly independent, and it is easy to see that $\mathcal{B}_2 = \{v_1\sigma,...,v_n\sigma\}$ is also linearly independent. Since $V$ and $W$ are isomorphic, they have the same dimension, and thus $\mathcal{B}_2$ is a basis for $W$. Since $(vg)\sigma = (v\sigma)g$ for all $g$ and $v$, the action of $g$ on the basis vectors of both bases are the same, and thus we conclude $[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}$.
+	\\\\
+	Conversely, suppose that the latter hypothesis is satisfied. Let $\{v_1,...,v_n\}$ be a basis for $V$ and $\{w_1,...,w_n\}$ be a basis for $W$. We define a linear map $\sigma: V \rightarrow W$ such that $v_i \sigma = w_i$ for each $i$. Now observe that for each $i$, we have  $v_ig = \lambda_1 v_1 + ... + \lambda_n v_n$ and $w_ig = \lambda_1 w_1 +...+ \lambda_n w_n$, where $(\lambda_1,...,\lambda_n)$ is the $i$-th row of $[g]$. This means that $$(v_ig)\sigma = (\lambda_1 v_1 + ... + \lambda_n v_n)\sigma = \lambda_1 v_1\sigma + ... + \lambda_n v_n\sigma = \lambda_1 w_1 +...+ \lambda_n w_n = w_ig = (v_i\sigma)g$$ and thus $\sigma$ is a homomorphism of $FG$-modules.
+\end{proof}
+
 \end{document}
