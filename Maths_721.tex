@@ -27,6 +27,7 @@
 \usepackage{natbib}
 \usepackage{fancyhdr}
 \usepackage[nottoc]{tocbibind}
+\usepackage{theoremref}
 
 
 \pagestyle{fancy}
@@ -105,6 +106,8 @@
   \let\@ifnextchar\new@ifnextchar
   \array{*\c@MaxMatrixCols c}}
 \makeatother
+
+\newcommand{\mcl}{\mathcal}
 
 \newcommand{\V}{\mathcal{V}}
 \newcommand{\calL}{\mathcal{L}}
@@ -239,7 +242,7 @@ Explicitly, a representation is a function $\rho : G \to \GL(n,F)$ such that for
 \end{enumerate}
 Note the use of the (incredibly shit) postfix function notation.
 
-\begin{example}
+\begin{example} \thlabel{d4}
 Take $D_4$, the Dihedral group of order 8. It has the following group presentations
 \begin{align*}
     D_4 &= \langle a,b \mid a^4 = 1, b^2 = 1, a^b = a^{-1} \rangle\\
@@ -687,7 +690,8 @@ Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 % LECTURE 4
 % -------------------------------------------------------------------
 \section{Lecture 4}
-In this lecture we look at morphisms of $FG$-modules. 
+
+\subsection{Homomorphisms} 
 
 \begin{definition}
 	Let $V$ and $W$ be $FG$-modules. A \textit{homomorphism} of $FG$-modules is a map $\sigma: V \rightarrow W$ which is a linear transformation and also satisfies $(vg)\sigma = (v\sigma)g$ for all $g\in G, v\in V$. The \textit{kernel} and \textit{image} are defined in the obvious way
@@ -717,7 +721,7 @@ Equivalently, it is a homomorphism of modules over the ring $FG$. Indeed:
 	A homomorphism of $FG$-modules is an isomorphism if it is bijective
 \end{definition}
 \begin{remark}
-	The notes originally said "if the homomorphism has trivial kernel". However, this is definitely not correct because inclusions are always homomorphisms, but obviously not isomorphisms. 
+	In class we originally said "if the homomorphism has trivial kernel". However, this is definitely not correct because inclusions are always homomorphisms, but obviously not isomorphisms. 
 \end{remark}
 
 \begin{lemma}
@@ -733,7 +737,70 @@ Some rather obvious invariants of $FG$-modules (under isomorphism) are dimension
 \begin{proof}
 	Suppose firstly that $V$ and $W$ are isomorphic, and let $\sigma: V \rightarrow W$ be one such isomorphism. Let $\mathcal{B}_1 = \{v_1,...,v_n\}$ be a basis for $V$. In particular, it is linearly independent, and it is easy to see that $\mathcal{B}_2 = \{v_1\sigma,...,v_n\sigma\}$ is also linearly independent. Since $V$ and $W$ are isomorphic, they have the same dimension, and thus $\mathcal{B}_2$ is a basis for $W$. Since $(vg)\sigma = (v\sigma)g$ for all $g$ and $v$, the action of $g$ on the basis vectors of both bases are the same, and thus we conclude $[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}$.
 	\\\\
-	Conversely, suppose that the latter hypothesis is satisfied. Let $\{v_1,...,v_n\}$ be a basis for $V$ and $\{w_1,...,w_n\}$ be a basis for $W$. We define a linear map $\sigma: V \rightarrow W$ such that $v_i \sigma = w_i$ for each $i$. Now observe that for each $i$, we have  $v_ig = \lambda_1 v_1 + ... + \lambda_n v_n$ and $w_ig = \lambda_1 w_1 +...+ \lambda_n w_n$, where $(\lambda_1,...,\lambda_n)$ is the $i$-th row of $[g]$. This means that $$(v_ig)\sigma = (\lambda_1 v_1 + ... + \lambda_n v_n)\sigma = \lambda_1 v_1\sigma + ... + \lambda_n v_n\sigma = \lambda_1 w_1 +...+ \lambda_n w_n = w_ig = (v_i\sigma)g$$ and thus $\sigma$ is a homomorphism of $FG$-modules.
+	Conversely, suppose that the latter hypothesis is satisfied. Let $\{v_1,...,v_n\}$ be a basis for $V$ and $\{w_1,...,w_n\}$ be a basis for $W$. We define a bijective linear map $\sigma: V \rightarrow W$ such that $v_i \sigma = w_i$ for each $i$. Now observe that for each $i$, we have  $v_ig = \lambda_1 v_1 + ... + \lambda_n v_n$ and $w_ig = \lambda_1 w_1 +...+ \lambda_n w_n$, where $(\lambda_1,...,\lambda_n)$ is the $i$-th row of $[g]$. This means that $$(v_ig)\sigma = (\lambda_1 v_1 + ... + \lambda_n v_n)\sigma = \lambda_1 v_1\sigma + ... + \lambda_n v_n\sigma = \lambda_1 w_1 +...+ \lambda_n w_n = w_ig = (v_i\sigma)g$$ and thus $\sigma$ is a homomorphism of $FG$-modules. Since it is bijective, it is an isomorphism.
+\end{proof}
+\begin{theorem}
+	Let $V$ be an $FG$-module with basis $\mcl{B}_1$ and $W$ an $FG$-module with basis $\mcl{B}_2$. Then $W \cong V$ if and only if $g\mapsto [g]_{\mcl{B}_1}$ and $g\mapsto [g]_{\mcl{B}_2}$ are equivalent.
+\end{theorem}
+\begin{proof}
+	This follows from the previous Lemma and the fact that two matrices are conjugate ($A$ and $B$ are conjugate if $A = P^{-1}B P$ for some $P$) if and only if the linear transformations they define differ by a change of basis (that is they define the same transformation but with respect to different bases)
+\end{proof}
+
+\begin{example}
+	Let $G = C_3 = \{e, a, a^2\}$. Let $V$ be the regular representation, that is the natural representation induced by the module $FG = \langle e, a, a^2 \rangle$. Write $B:= \{e, a, a^2\}$ as a basis for $FG$. Then $$[a]_B = \left(\begin{matrix}
+	0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0
+	\end{matrix}\right)$$ Now let $W$ be the permutation module where $a = (1, 2, 3)$ and $C_3$ is considered a subgroup of $S_3$. Write $B' = \{v_1, v_2, v_3\}$ for the basis of $W$. Then $$[a]_{B'} = \left(\begin{matrix}
+	0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0
+	\end{matrix}\right)$$
+	Note that these two modules are isomorphic. 
+\end{example}
+\begin{example}
+	Let $G = D_4 = \langle a, b \mid a^4 = b^2 = 1, a^b = a^{-1}\rangle$. Now we can act on either $F^4$ or $F^8$. On $F^4$, we have the representation described in \thref{d4}. On $W$, we have the regular representation. Clearly are not isomorphic.
+\end{example}
+
+\subsection{Sums}
+
+We now consider how modules behave with respect to direct sums. Let $V$ be an $FG$-module and suppose $V = U \oplus W$, where $U$ and $W$ are submodules. Let $\mcl{B}_1 =\{u_1,...,u_n\}$ be a basis for $U$ and $\mcl{B}_2 =\{w_1,...,w_m\}$ one for $W$, so that $\mcl{B} = \mcl{B}_1 \cup \mcl{B_2}$ is a basis for $V$. Then $$[g]_{\mcl{B}} = \begin{pmatrix} (g)_{\mcl{B}_1} & 0 \\0 & [g]_{\mcl{B}_2} \end{pmatrix}$$ (I have no idea why, but the moment I try use square brackets around that $g$ it fucks up - Oliver). 
+
+\begin{lemma}
+	Let $V$ be an $FG$-module such that we have the decomposition $$V = \bigoplus_{i = 1}^n U_i$$ Define the projection map $\pi_i: u_1 + u_2 +...+ u_n \mapsto u_i$. Then 
+	\begin{enumerate}
+		\item[(i)] $\pi_i$ is a homomorphism
+		\item[(ii)] $\pi_i \circ \pi_i = \pi_i$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	Trivial
+\end{proof}
+
+\begin{lemma}
+	Suppose we have a finite decomposition $$V = \sum U_i$$ where the $U_i$ are irreducible. Then $V$ is the direct sum of the subset of the $U_i$. 
+\end{lemma}
+\begin{proof}
+	This follows from the fact that the intersection of two distinct irreducible modules is trivial (again, simple checking).
+\end{proof}
+
+We will now present an important result
+\begin{theorem} [Maschke's Theorem]
+	Let $G$ be a finite group, $F$ a field of characteristic 0, $V$ an $FG$-module and $U$ a submodule. Then there exists some $W$ such that $V = U \oplus W$.
+\end{theorem}
+\begin{proof}
+	We first choose some $W_1$ such that $V = U \oplus W_1$ as vector spaces. Note that each $v\in V$ can be uniquely decomposed as $v = u + w$ , where $u\in U, w\in W_1$. Now define the canonical projection $\sigma: V \rightarrow U$ where $v \mapsto u$. Clearly $\ker \sigma = W_1$ and $\im \sigma = U$. However, we note that $\sigma$ is NOT necessarily a homomorphism of $FG$-modules. We modify it as follows: Define $\varphi: V \rightarrow V$ by $$v\mapsto \frac{1}{{|G|}} \sum_{g\in G} vg\sigma g^{-1}$$ We claim that $\varphi$ IS a homomorphism. Indee, suppose $x\in G, v\in V$. Then 
+	\begin{align*}
+		(xv)\varphi &= \frac{1}{{|G|}} \sum_{g\in G} (vx)g\sigma g^{-1}\\
+		&= \frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}x \\
+		&= \left(\frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}\right)x = (v\varphi)x
+	\end{align*}
+	where the equality $$\frac{1}{{|G|}} \sum_{g\in G} (vx)g\sigma g^{-1}= \frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}x$$ follows from the change of variables $h = xg$. Clearly $\varphi$ maps into $U$, and we now check it is a projection. Indeed, supposing $u\in U$ we have 
+	\begin{align*}
+		(u)\varphi &= \frac{1}{{|G|}} \sum_{g\in G} ug\sigma g^{-1} \\
+		&= \frac{1}{{|G|}} \sum_{g\in G} u\sigma gg^{-1} \\
+		&= \frac{1}{{|G|}} \sum_{g\in G} u\\
+		&= u
+	\end{align*}
+	as desired. 
+	\\\\
+	Now clearly have $U = \im \varphi$ and define $W:= \ker \varphi$. Then for each $v\in V$, write $u:= v\varphi \in U$ and $w:= v - u\in W$ so that $v = u + w$. It only remains to check that this is unique. To see this, suppose $u' + w' = v = u + w$. Then $$u' = \varphi(u') = \varphi(v) = \varphi(u) = u$$ which implies the result.
 \end{proof}
 
 \end{document}
