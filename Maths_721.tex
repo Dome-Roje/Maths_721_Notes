@@ -419,6 +419,30 @@ Suppose $V$ is an $FG$-module and $B$ is a basis for $V$. For $g \in G$, let $[g
 \end{definition}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------------
+% LECTURE 2
+% -----------------------------------------------------------
+
+
+
 \section{Lecture 2}
 
 
@@ -445,7 +469,7 @@ Since $V$ is an $FG$-module we have $v(gh) = (vg)h$ for all $g, h \in G$ and $v 
 \end{align*}	
 In this basis we recover our representation
 \[
-	a \mapsto [a]_B = \begin{bmatrix} 0 & 1\\ -1 & 0 \end{bmatrix}, \quad
+	a \mapsto [a]_B = \begin{bmatrix*}[r] 0 & 1\\ -1 & 0 \end{bmatrix*}, \quad
 	b \mapsto [b]_B = \begin{bmatrix} 1 & 0\\ 0 & -1 \end{bmatrix}.
 \]
 \end{example}
@@ -533,8 +557,8 @@ It follows from Caley's theorem that every group has a faithful $FG$-module.
 \begin{example}
 Take $G = S_4$ and pick $g = (1\;2)$ and $h = (1\;2\;3\;4)$. We have representations
 \[
-[g]_B = \begin{bmatrix} 0&1&0&0\\ 1&0&0&0\\ 0&0&1&0\\ 0&0&0&1 \end{bmatrix}, \quad
-[h]_B = \begin{bmatrix} 0&1&0&0\\ 0&0&1&0\\ 0&0&0&1\\ 1&0&0&0 \end{bmatrix}.
+    [g]_B = \begin{bmatrix} 0&1&0&0\\ 1&0&0&0\\ 0&0&1&0\\ 0&0&0&1 \end{bmatrix}, \quad
+    [h]_B = \begin{bmatrix} 0&1&0&0\\ 0&0&1&0\\ 0&0&0&1\\ 1&0&0&0 \end{bmatrix}.
 \]
 \end{example}
 
@@ -556,11 +580,33 @@ For example, consider the action of $g = (1\;2\;3)$ on $v_1 + v_2 \in U$.
 \]
 whereas $G$ acts on $W$ trivially.
 \end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ---------------------------------------------------------------------------------
+% LECTURE 3
+% ---------------------------------------------------------------------------------
+
+
+
 \section{Lecture 3}
 
 \subsection{Module and Representation Reducibility}
 
-For any module, it is clear that we have two trivial submodules: $0<v$ and $V<V$. Where $0 = \{0\}\subset V$.
+For any module, it is clear that we have two trivial submodules: $0<V$ and $V<V$. Where $0 = \{0\}\subset V$.
 
 \begin{definition}
 	Let $V$ be an FG-module. We say that $V$ is irreducible if the only submodules of $V$ are $V$ and $0$. Otherwise $V$ is reducible
@@ -605,9 +651,9 @@ Recall that an algebra over a field $F$ is a  vector space over $F$ equipped wit
 
 \begin{definition}
 	The group algebra over a finite group $G$ over a field $F$ is an algebra\footnote{See Lemma\ref{le:3.6} } of dimension $n = |G|$ over $F=\R$ or $\C$ called $FG$, with basis $B=G = \{g_1,\dots g_n\}$. Where the algebra structure is given by the following for two arbitrary elements of $FG$, $u = \sum_{g\in G}\lambda_gg$, $v = \sum_{g\in G}\mu_g$, $\lambda_g,\mu_g\in F$ and $\nu\in F$:
-	\begin{enumerate}
-		\item $u+v = \sum_{i=1}^n(\lambda_i+\mu_i)g_i$\\
-		\item $\nu \cdot u = \sum_{i=1}^{n}(\nu\lambda_i)g_i$\\
+	\begin{enumerate}[label=(\roman*)]
+		\item $u+v = \sum_{i=1}^n(\lambda_i+\mu_i)g_i$
+		\item $\nu \cdot u = \sum_{i=1}^{n}(\nu\lambda_i)g_i$
 		\item $u\cdot v = \sum_{(h,g)\in G\times G}\lambda_g\mu_h(gh)$
 	\end{enumerate}
 \end{definition}
@@ -620,13 +666,13 @@ This is clearly a vector space.
 \end{example}
 \begin{lemma}\label{le:3.6}
 	Given a group algebra $FG$, $r,s,t\in FG$, $\lambda\in F$:
-	\begin{enumerate}
-		\item $rs\in FG$\\
-		\item $(rs)t = r(st)$\\
-		\item $1_Gr=r1_G=r$\\
-		\item $(\lambda r)s=\lambda(rs)$\\
-		\item $(r+s)t=rt+st$\\
-		\item $r(s+t)=rs+rt$\\
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $rs\in FG$
+		\item $(rs)t = r(st)$
+		\item $1_Gr=r1_G=r$
+		\item $(\lambda r)s=\lambda(rs)$
+		\item $(r+s)t=rt+st$
+		\item $r(s+t)=rs+rt$
 		\item $r0=0r=0$
 	\end{enumerate}
 That is, $FG$ is an associative algebra with unit
@@ -659,13 +705,13 @@ Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 \[v\cdot r = v\cdot \left(\sum_{g\in G}\mu_g g\right) = \sum_{g\in G}\mu_g(v\cdot g)\]
 \begin{lemma}
 	For $u,v\in V$, $\lambda\in F$, $r,s\in FG$:
-	\begin{enumerate}
-		\item $vr\in FG$\\
-		\item $(vr)s = v(rs)$\\
-		\item $v1=v$\\
-		\item $(\lambda v)r=\lambda(vr)=v(\lambda r)$\\
-		\item $(r+s)v=rv+sv$\\
-		\item $r(u+v)=ru+rv$\\
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $vr\in FG$
+		\item $(vr)s = v(rs)$
+		\item $v1=v$
+		\item $(\lambda v)r=\lambda(vr)=v(\lambda r)$
+		\item $(r+s)v=rv+sv$
+		\item $r(u+v)=ru+rv$
 		\item $r0=v0=0$
 	\end{enumerate}
 \end{lemma}
@@ -685,6 +731,22 @@ Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 	&=\sum_{h\in G}\lambda_h(vr)h=(vr)s
 	\end{align*}
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % -------------------------------------------------------------------
 % LECTURE 4
@@ -714,11 +776,15 @@ Equivalently, it is a homomorphism of modules over the ring $FG$. Indeed:
 	Take $\sigma: V \rightarrow V$ to be $v \mapsto \lambda v$ for some $\lambda \in F^*$. Then $\ker \sigma = 0, \im \sigma = V$. 
 \end{example}
 \begin{example}
-	Let $G = S_n$ and $V = \langle v_1,..., v_n \rangle$ be the permutation module for $G$ over $F$, and let $W = \langle w \rangle$ be the trivial module. Now define $\sigma: V \rightarrow W$ by $$\sum \lambda_i v_i \mapsto \sum \lambda_i w$$ Then $\ker \sigma = \{\sum \lambda_i v_i \mid \sum \lambda_i = 0\}$ and $\im \sigma = W$. 
+	Let $G = S_n$ and $V = \langle v_1,..., v_n \rangle$ be the permutation module for $G$ over $F$, and let $W = \langle w \rangle$ be the trivial module. Now define $\sigma: V \rightarrow W$ by
+\[
+	\sum \lambda_i v_i \mapsto \sum \lambda_i w
+\]
+Then $\ker \sigma = \{\sum \lambda_i v_i \mid \sum \lambda_i = 0\}$ and $\im \sigma = W$. 
 \end{example}
 
 \begin{definition}
-	A homomorphism of $FG$-modules is an isomorphism if it is bijective
+	A homomorphism of $FG$-modules is an \textit{isomorphism} if it is bijective
 \end{definition}
 \begin{remark}
 	In class we originally said "if the homomorphism has trivial kernel". However, this is definitely not correct because inclusions are always homomorphisms, but obviously not isomorphisms. 
@@ -732,12 +798,20 @@ Equivalently, it is a homomorphism of modules over the ring $FG$. Indeed:
 \end{proof}
 Some rather obvious invariants of $FG$-modules (under isomorphism) are dimension and irreducibility.
 \begin{lemma}
-	$V$ and $W$ are isomorphic if and only if there exists bases $\mathcal{B}_1$ of $V$ and $\mathcal{B}_2$ of $W$ such that $$[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}$$ for all $g$.
+	$V$ and $W$ are isomorphic if and only if there exists bases $\mathcal{B}_1$ of $V$ and $\mathcal{B}_2$ of $W$ such that
+\[
+	[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}
+\]
+for all $g$.
 \end{lemma}
 \begin{proof}
 	Suppose firstly that $V$ and $W$ are isomorphic, and let $\sigma: V \rightarrow W$ be one such isomorphism. Let $\mathcal{B}_1 = \{v_1,...,v_n\}$ be a basis for $V$. In particular, it is linearly independent, and it is easy to see that $\mathcal{B}_2 = \{v_1\sigma,...,v_n\sigma\}$ is also linearly independent. Since $V$ and $W$ are isomorphic, they have the same dimension, and thus $\mathcal{B}_2$ is a basis for $W$. Since $(vg)\sigma = (v\sigma)g$ for all $g$ and $v$, the action of $g$ on the basis vectors of both bases are the same, and thus we conclude $[g]_{\mathcal{B}_1} = [g]_{\mathcal{B}_2}$.
 	\\\\
-	Conversely, suppose that the latter hypothesis is satisfied. Let $\{v_1,...,v_n\}$ be a basis for $V$ and $\{w_1,...,w_n\}$ be a basis for $W$. We define a bijective linear map $\sigma: V \rightarrow W$ such that $v_i \sigma = w_i$ for each $i$. Now observe that for each $i$, we have  $v_ig = \lambda_1 v_1 + ... + \lambda_n v_n$ and $w_ig = \lambda_1 w_1 +...+ \lambda_n w_n$, where $(\lambda_1,...,\lambda_n)$ is the $i$-th row of $[g]$. This means that $$(v_ig)\sigma = (\lambda_1 v_1 + ... + \lambda_n v_n)\sigma = \lambda_1 v_1\sigma + ... + \lambda_n v_n\sigma = \lambda_1 w_1 +...+ \lambda_n w_n = w_ig = (v_i\sigma)g$$ and thus $\sigma$ is a homomorphism of $FG$-modules. Since it is bijective, it is an isomorphism.
+	Conversely, suppose that the latter hypothesis is satisfied. Let $\{v_1,...,v_n\}$ be a basis for $V$ and $\{w_1,...,w_n\}$ be a basis for $W$. We define a bijective linear map $\sigma: V \rightarrow W$ such that $v_i \sigma = w_i$ for each $i$. Now observe that for each $i$, we have  $v_ig = \lambda_1 v_1 + ... + \lambda_n v_n$ and $w_ig = \lambda_1 w_1 +...+ \lambda_n w_n$, where $(\lambda_1,...,\lambda_n)$ is the $i$-th row of $[g]$. This means that
+\[
+	(v_ig)\sigma = (\lambda_1 v_1 + ... + \lambda_n v_n)\sigma = \lambda_1 v_1\sigma + ... + \lambda_n v_n\sigma = \lambda_1 w_1 +...+ \lambda_n w_n = w_ig = (v_i\sigma)g
+\]
+and thus $\sigma$ is a homomorphism of $FG$-modules. Since it is bijective, it is an isomorphism.
 \end{proof}
 \begin{theorem}
 	Let $V$ be an $FG$-module with basis $\mcl{B}_1$ and $W$ an $FG$-module with basis $\mcl{B}_2$. Then $W \cong V$ if and only if $g\mapsto [g]_{\mcl{B}_1}$ and $g\mapsto [g]_{\mcl{B}_2}$ are equivalent.
@@ -747,11 +821,18 @@ Some rather obvious invariants of $FG$-modules (under isomorphism) are dimension
 \end{proof}
 
 \begin{example}
-	Let $G = C_3 = \{e, a, a^2\}$. Let $V$ be the regular representation, that is the natural representation induced by the module $FG = \langle e, a, a^2 \rangle$. Write $B:= \{e, a, a^2\}$ as a basis for $FG$. Then $$[a]_B = \left(\begin{matrix}
+	Let $G = C_3 = \{e, a, a^2\}$. Let $V$ be the regular representation, that is the natural representation induced by the module $FG = \langle e, a, a^2 \rangle$. Write $B:= \{e, a, a^2\}$ as a basis for $FG$. Then
+\[
+	[a]_B = \left(\begin{matrix}
 	0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0
-	\end{matrix}\right)$$ Now let $W$ be the permutation module where $a = (1, 2, 3)$ and $C_3$ is considered a subgroup of $S_3$. Write $B' = \{v_1, v_2, v_3\}$ for the basis of $W$. Then $$[a]_{B'} = \left(\begin{matrix}
+	\end{matrix}\right)
+\]
+Now let $W$ be the permutation module where $a = (1, 2, 3)$ and $C_3$ is considered a subgroup of $S_3$. Write $B' = \{v_1, v_2, v_3\}$ for the basis of $W$. Then
+\[
+	[a]_{B'} = \left(\begin{matrix}
 	0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0
-	\end{matrix}\right)$$
+	\end{matrix}\right)
+\]
 	Note that these two modules are isomorphic. 
 \end{example}
 \begin{example}
@@ -760,13 +841,23 @@ Some rather obvious invariants of $FG$-modules (under isomorphism) are dimension
 
 \subsection{Sums}
 
-We now consider how modules behave with respect to direct sums. Let $V$ be an $FG$-module and suppose $V = U \oplus W$, where $U$ and $W$ are submodules. Let $\mcl{B}_1 =\{u_1,...,u_n\}$ be a basis for $U$ and $\mcl{B}_2 =\{w_1,...,w_m\}$ one for $W$, so that $\mcl{B} = \mcl{B}_1 \cup \mcl{B_2}$ is a basis for $V$. Then $$[g]_{\mcl{B}} = \begin{pmatrix} (g)_{\mcl{B}_1} & 0 \\0 & [g]_{\mcl{B}_2} \end{pmatrix}$$ (I have no idea why, but the moment I try use square brackets around that $g$ it fucks up - Oliver). 
+We now consider how modules behave with respect to direct sums. Let $V$ be an $FG$-module and suppose $V = U \oplus W$, where $U$ and $W$ are submodules. Let $\mcl{B}_1 =\{u_1,...,u_n\}$ be a basis for $U$ and $\mcl{B}_2 =\{w_1,...,w_m\}$ one for $W$, so that $\mcl{B} = \mcl{B}_1 \cup \mcl{B_2}$ is a basis for $V$. Then 
+\[
+    [g]_{\mcl{B}} = \begin{pmatrix*}
+        [g]_{\mcl B_1} & 0 \\0 & [g]_{\mcl{B}_2}
+    \end{pmatrix*}
+\]
+%(I have no idea why, but the moment I try use square brackets around that $g$ it fucks up - Oliver). 
 
 \begin{lemma}
-	Let $V$ be an $FG$-module such that we have the decomposition $$V = \bigoplus_{i = 1}^n U_i$$ Define the projection map $\pi_i: u_1 + u_2 +...+ u_n \mapsto u_i$. Then 
-	\begin{enumerate}
-		\item[(i)] $\pi_i$ is a homomorphism
-		\item[(ii)] $\pi_i \circ \pi_i = \pi_i$
+	Let $V$ be an $FG$-module such that we have the decomposition
+\[
+	V = \bigoplus_{i = 1}^n U_i
+\]
+Define the projection map $\pi_i: u_1 + u_2 +...+ u_n \mapsto u_i$. Then 
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $\pi_i$ is a homomorphism
+		\item $\pi_i \circ \pi_i = \pi_i$
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -774,7 +865,11 @@ We now consider how modules behave with respect to direct sums. Let $V$ be an $F
 \end{proof}
 
 \begin{lemma}
-	Suppose we have a finite decomposition $$V = \sum U_i$$ where the $U_i$ are irreducible. Then $V$ is the direct sum of the subset of the $U_i$. 
+	Suppose we have a finite decomposition
+\[
+	V = \sum U_i
+\]
+where the $U_i$ are irreducible. Then $V$ is the direct sum of the subset of the $U_i$. 
 \end{lemma}
 \begin{proof}
 	This follows from the fact that the intersection of two distinct irreducible modules is trivial (again, simple checking).
@@ -785,13 +880,21 @@ We will now present an important result
 	Let $G$ be a finite group, $F$ a field of characteristic 0, $V$ an $FG$-module and $U$ a submodule. Then there exists some $W$ such that $V = U \oplus W$.
 \end{theorem}
 \begin{proof}
-	We first choose some $W_1$ such that $V = U \oplus W_1$ as vector spaces. Note that each $v\in V$ can be uniquely decomposed as $v = u + w$ , where $u\in U, w\in W_1$. Now define the canonical projection $\sigma: V \rightarrow U$ where $v \mapsto u$. Clearly $\ker \sigma = W_1$ and $\im \sigma = U$. However, we note that $\sigma$ is NOT necessarily a homomorphism of $FG$-modules. We modify it as follows: Define $\varphi: V \rightarrow V$ by $$v\mapsto \frac{1}{{|G|}} \sum_{g\in G} vg\sigma g^{-1}$$ We claim that $\varphi$ IS a homomorphism. Indee, suppose $x\in G, v\in V$. Then 
+	We first choose some $W_1$ such that $V = U \oplus W_1$ as vector spaces. Note that each $v\in V$ can be uniquely decomposed as $v = u + w$ , where $u\in U, w\in W_1$. Now define the canonical projection $\sigma: V \rightarrow U$ where $v \mapsto u$. Clearly $\ker \sigma = W_1$ and $\im \sigma = U$. However, we note that $\sigma$ is NOT necessarily a homomorphism of $FG$-modules. We modify it as follows: Define $\varphi: V \rightarrow V$ by
+\[
+	v\mapsto \frac{1}{{|G|}} \sum_{g\in G} vg\sigma g^{-1}
+\]
+We claim that $\varphi$ IS a homomorphism. Indeed, suppose $x\in G, v\in V$. Then 
 	\begin{align*}
 		(xv)\varphi &= \frac{1}{{|G|}} \sum_{g\in G} (vx)g\sigma g^{-1}\\
 		&= \frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}x \\
 		&= \left(\frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}\right)x = (v\varphi)x
 	\end{align*}
-	where the equality $$\frac{1}{{|G|}} \sum_{g\in G} (vx)g\sigma g^{-1}= \frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}x$$ follows from the change of variables $h = xg$. Clearly $\varphi$ maps into $U$, and we now check it is a projection. Indeed, supposing $u\in U$ we have 
+	where the equality
+\[
+	\frac{1}{{|G|}} \sum_{g\in G} (vx)g\sigma g^{-1}= \frac{1}{{|G|}} \sum_{h\in G} vh\sigma h^{-1}x
+\]
+follows from the change of variables $h = xg$. Clearly $\varphi$ maps into $U$, and we now check it is a projection. Indeed, supposing $u\in U$ we have 
 	\begin{align*}
 		(u)\varphi &= \frac{1}{{|G|}} \sum_{g\in G} ug\sigma g^{-1} \\
 		&= \frac{1}{{|G|}} \sum_{g\in G} u\sigma gg^{-1} \\
@@ -800,7 +903,11 @@ We will now present an important result
 	\end{align*}
 	as desired. 
 	\\\\
-	Now clearly have $U = \im \varphi$ and define $W:= \ker \varphi$. Then for each $v\in V$, write $u:= v\varphi \in U$ and $w:= v - u\in W$ so that $v = u + w$. It only remains to check that this is unique. To see this, suppose $u' + w' = v = u + w$. Then $$u' = \varphi(u') = \varphi(v) = \varphi(u) = u$$ which implies the result.
+	Now clearly $U = \im \varphi$ and we define $W:= \ker \varphi$. Then for each $v\in V$, write $u:= v\varphi \in U$ and $w:= v - u\in W$ so that $v = u + w$. It only remains to check that this is unique. To see this, suppose $u' + w' = v = u + w$. Then
+\[
+	u' = \varphi(u') = \varphi(v) = \varphi(u) = u
+\]
+which implies the result.
 \end{proof}
 
 \end{document}
