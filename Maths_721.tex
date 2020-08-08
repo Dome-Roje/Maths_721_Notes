@@ -910,4 +910,312 @@ follows from the change of variables $h = xg$. Clearly $\varphi$ maps into $U$, 
 which implies the result.
 \end{proof}
 
+
+
+
+
+
+
+
+
+
+% -------------------------------------------------------------------
+% LECTURE 6
+% -------------------------------------------------------------------
+
+
+
+\section{Lecture 5}
+
+
+
+We begin with consequences of Maschke's theorem.
+
+\begin{example}
+Let $G = S_3$, and $V = \langle v_1,v_2,v_3 \rangle$ is the permutation module. Let $U$ be the submodule of $V$ defined as $U = \langle v_1 + v_2 + v_3 \rangle < V$. Suppose $W_0 = \langle v_1, v_2 \rangle$, so that $V = U \oplus W_0$ as subspaces. Define a projection $\phi : V \to U$ by $v_1 \mapsto 0$, $v_2 \mapsto 0$, and $v_3 \mapsto v_1 + v_2 + v_3$. Further, define $\theta : V \to V$, as in proof of Maschke's theorem, so that
+\[
+    v\theta = \frac{1}{|G|}\sum_{g \in G}vg\theta g^{-1} = \frac{1}{6}\sum_{g \in S_3}vg\theta g^{-1}.
+\]
+Consider the action of $\theta$ on the basis elements $v_i$, then a short computation shows that
+\[
+    v_i\theta = \frac{1}{3}(v_1 + v_2 + v_3), \qquad i=1,2,3.
+\]
+Moreover, we have
+\[
+    \ker \theta = \{v \in V : v\theta = 0\} = \bigg\{\sum_{i=1}^3 \lambda_iv_i : \sum_{i=1}^3 \lambda_i = 0\bigg\}.
+\]
+Hence $V = U \oplus \ker \theta$, is a direct summand of submodules. Moreover, if $\mathcal B = [v_1+v_2+v_3,v_1,v_2]$ is a basis for $V$, and $\mathcal B' = [v_1 + v_2 + v_3, v_1 - v_2, v_2 - v_3]$ is another, one has
+\[
+    [g]_{\mathcal B} = \begin{pmatrix*}
+        * & 0 & 0\\
+        * & * & *\\
+        * & * & *
+    \end{pmatrix*}, \qquad [g]_{\mathcal B'} = \begin{pmatrix*}
+        * & 0 & 0\\
+        0 & * & *\\
+        0 & * & *
+    \end{pmatrix*}.
+\]
+\end{example}
+
+In fact, it follows from Maschke's theorem that if we choose a basis $\mathcal B$ for $V$ such that
+\[
+    [g]_{\mathcal B} = \begin{pmatrix*}
+        * & 0\\ * & *
+    \end{pmatrix*},
+\]
+then there exists a basis $\mathcal B'$ for $V$ such that
+\[
+    [g]_{\mathcal B'} = \begin{pmatrix*}
+        * & 0\\0 & *
+    \end{pmatrix*}.
+\]
+
+\begin{definition}
+Let $V$ be a $FG$-module, $V$ is said to be \textbf{completely reducible} if $V = U_1 \oplus \cdots \oplus U_r$ with each $U_i$ an irreducible $FG$-module.
+\end{definition}
+
+\begin{theorem}
+Suppose $G$ is a finite group, and $F = \R,\C$. Then every $FG$-module is completely reducible
+\end{theorem}
+
+\begin{proof}
+Induction using Maschke's theorem.
+\end{proof}
+
+\begin{lemma}
+Suppose $G$ is a finite group, $F = \R,\C$, and $V$ a $FG$-module. If $U$ is a $FG$-submodule, then there exists a surjective $FG$-homomorphism from $V$ onto $U$.
+\end{lemma}
+
+\begin{proof}
+By Maschke's theorem, there exists a complementary submodule $W$ to $U$ such that $V = U \oplus W$. Thus, defining $\pi : V \to U$ by $u + w \mapsto u$ gives the result.
+\end{proof}
+
+
+\begin{example}
+Take
+\[
+    G = \left\langle \begin{pmatrix*}
+        1 & 0 \\ n & 1
+    \end{pmatrix*} \mid n \in \Z \right\rangle
+\]
+and $V = \C^2$. Then $V$ is not completely reducible.
+\end{example}
+
+
+\begin{example}
+Let $G = C_p = \langle a \mid a^p = 1 \rangle$ where $p$ is prime, and take the representation
+\[
+    a^j \mapsto \begin{pmatrix*}
+        1 & j\\ 0 & 1
+    \end{pmatrix*}, \qquad 0 \le j \le p-1
+\]
+over the finite field $F = \Z_p$. If $V = \langle v_1, v_2 \rangle$ is the $FG$-module of the representation and $U= \langle v_2 \rangle$, then there does not exist a submodule $W < V$ such that $V = U \oplus W$.
+\end{example}
+
+The previous two examples show that the assumptions of Maschke's theorem are required, and cannot be relaxed.
+
+
+\subsection{Schur's Lemma}
+
+\begin{theorem}[Schur's lemma]
+Suppose $V$ and $W$ are irreducible $\C G$-modules.
+\begin{enumerate}[label=\emph{(\Roman*)}]
+    \item If $\theta : V \to W$ is a $\C G$-homomorphism, then $\theta$ is either a $\C G$-isomorphism or the zero homomorphism.
+    
+    \item If $\theta : V \to V$ is a $\C G$-isomorphism, then $\theta$ is scalar multiple of the identity endomorphism of $V$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(I): Suppose that $v\theta \neq 0$ for some $v \in V$, then the image of $\theta$ is not trivial, $\im \theta \neq \{0\}$. However, $\im\theta$ is a submodule of $W$, and so the irreducibility of $W$ forces $\im \theta = W$. Likewise, as the kernel of $\theta$ is a submodule of $V$, but not all of $V$, we have $\ker \theta = \{0\}$ as $V$ is irreducible. Therefore, $\theta$ is a bijective $\C G$-homomorphism, and so it is a $\C G$-isomorphism.
+
+(II): Suppose $\theta$ is a $\C G$-isomorphism. Then as $\C$ is algebraically closed, $\theta$ has an eigenvalue $\lambda_v \in \C$ with $v \theta = \lambda_v v$ for some $v \in V$. Now, as $\ker(\theta - \lambda_v 1_V) \neq \{0\}$ is a submodule of $V$, $V$ being irreducible implies that $\ker(\theta - \lambda_v1_V) = V$. Therefore, $w(\theta - \lambda_v1_V) = 0$ for all $w \in V$, and so $\theta = \lambda 1_V$ as required. 
+\end{proof}
+
+Further, we actually have a converse to the second statement of Schur's lemma.
+
+\begin{proposition}
+Let $V$ be a nontrivial $\C G$-module, and suppose that every $\C G$-homomorphism from $V$ to $V$ is a scalar multiple of the identity endomorphism of $V$. Then $V$ is irreducible.
+\end{proposition}
+
+\begin{proof}
+Suppose $V$ is reducible. Then there exists a nontrivial submodule $U$ of $V$ such that, by Maschke's theorem, $V = U \oplus W$ with $W$ also a submodule of $V$. Defining $\pi : V \to V$ by $u + w \mapsto u$ gives a $\C G$-homomorphism that is not a multiple of the identity endomorphism. A contradiction.
+\end{proof}
+
+
+We now interpret Schur's lemma as representation statement.
+
+\begin{lemma}
+Let $\rho : G \to \GL(n,\C)$ be a representation. Then $\rho$ is irreducible if, and only if, every $n \times n$ matrix $A$ which satisfies $(g\rho)A = A(g\rho)$ for all $g \in G$, has the form $A = \lambda I_n$.
+\end{lemma}
+
+\begin{proof}
+Result follows from Schur's lemma and its partial converse.
+\end{proof}
+
+\begin{example}
+Suppose $G = C_3 = \langle a \mid a^3 = 1\rangle$, and $\rho : G \to \GL(2,\C)$ is the representation defined by
+\[
+    a\rho = \begin{pmatrix*}[r]
+        0 & 1\\ -1 & -1
+    \end{pmatrix*}.
+\]
+Let
+\[
+    A = a\rho = \begin{pmatrix*}[r]
+        0 & 1\\ -1 & -1
+    \end{pmatrix*}.
+\]
+Then it is clear that $A(g\rho) = (g\rho)A$ for all $g \in G$. As $A$ is not a scalar multiple of the identity, the representation is reducible.
+\end{example}
+
+\begin{example}
+Suppose $G = D_5 = \langle a,b \mid a^5 = 1, b^2=1, a^b=a^{-1}\rangle$. Set $\omega = e^{2\pi i/5}$. Let $\rho : G \to \GL(2,\C)$ be the representation defined by
+\[
+    a \mapsto \begin{pmatrix*}[r]
+        \omega & 0\\ 0 & \omega^{-1}
+    \end{pmatrix*}, \qquad b \mapsto \begin{pmatrix*}[r]
+        0 & 1\\ 1 & 0
+    \end{pmatrix*}.
+\]
+If
+\[
+    A = \begin{pmatrix*}[r]
+        \alpha & \beta \\ \gamma & \delta
+    \end{pmatrix*}
+\]
+commutes with $a \rho$ and $b \rho$; one calculates that
+\[
+    A = \begin{pmatrix*}[r]
+        \alpha & 0 \\ 0 & \alpha
+    \end{pmatrix*} = \alpha I_n,
+\]
+and so the representation is irreducible.
+\end{example}
+
+
+\begin{lemma}
+Let $G$ be a finite abelian group. Then every irreducible $\C G$-module has dimension 1.
+\end{lemma}
+
+\begin{proof}
+Choose $x \in G$, then $v(gx) = v(xg)$ for all $g \in G$, and so $v \mapsto vx$ is a $\C G$-homomorphism. It is actually an isomorphism with inverse $v \mapsto vx^{-1}$. Hence by Schur this isomorphism is a scalar multiple of the identity, say $\lambda_x1_V$. Thus $vx = \lambda_x1_V$ for all $v \in V$ and the group action by $G$ is just usual scalar multiplication. This means that every subspace is a submodule. However, $V$ is irreducible and so has no non-trivial submodules; which forces $\dim V = 1$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+% -------------------------------------------------------------------
+% LECTURE 6
+% -------------------------------------------------------------------
+
+
+\section{Lecture 6}
+
+
+
+We continue our descussion of the representations of abelian groups.
+\begin{lemma}
+Let $G$ be a finite abelian group. Every irreducible $\mathbb{C}G$-module has dimension 1.
+\end{lemma}
+
+Instead we prove a stronger theorem in which we construct these representations by mapping group elements to roots of unity. But first recall the Fundamental Theorem of Abelian Groups which states that any finite abelian group $G$ is isomorphic to the direct sum of cyclic groups
+\[
+	G \simeq C_{n_1} \oplus \cdots \oplus C_{n_r}
+\]
+where $n_i \mid n_{i+1}$ for all $1 \leq i \leq r-1$. Note that if $C_i = \langle g_i \rangle$ then we can write $G = \langle g_1,\ldots, g_r \rangle$ and $g_i$ has order $n_i$.
+
+We define a homomorphism $\rho$ from $G$ to $\mathbb{C}$ by taking $g_i \mapsto \lambda_i$ where $\lambda_i$ is the $n_i$-th root of unity. This defines a representation and is specified by roots of unity $\lambda_1,\cdots, \lambda_r$. Thus for the representation $\rho$ defined by roots of unity $\lambda_1,\ldots, \lambda_r$ we write $\rho = \rho_{\lambda_1,\ldots,\lambda_r}$.
+%Conversely?
+
+\begin{theorem}
+Suppose $G\simeq C_{n_1}\times\cdots\times C_{n_r}$ for cyclic groups $C_{n_i}$ of order $n_i$. The representation $\rho_{\lambda_1,\ldots,\lambda_r}$ of $G$ is irreducible of degree 1. There are $|G|$ many such representations and every irreducible representation of $G$ over $\mathbb{C}$ is equivalent to one of these.
+\end{theorem}
+
+%Prove theorem
+
+\begin{example}
+Take $G=\langle a \mid a^n = 1 \rangle$ and $\omega = e^{2\pi i/n}$. The irreducable representations of $G$ are $\rho_{\omega^j}$ for $0 \leq j \leq n-1$ defined by
+\[
+	a^k \rho_{\omega^j} = \omega^{jk}, \quad 0 \leq k \leq n-1.
+\]
+\end{example}
+
+%Klein-4 group example
+
+%Diagonalisation?
+
+\subsection{Application of Schur's to $\mathbb{C}G$}
+
+\begin{definition}
+If $G$ is a finite group then we define the center of the group algebra $Z(\mathbb{C}G)$ by
+\[
+	Z(\mathbb{C}G) = \{ z \in\mathbb{C}G \mid zr = rz \quad\forall r\in\mathbb{C}G \}.
+\]
+\end{definition}
+
+%Remark
+\begin{enumerate}
+	\item $Z(\mathbb{C}G)$ is a subspace of $\mathbb{C}G$.
+	\item If $G$ is abelian then $Z(\mathbb{C}G) = \mathbb{C}Z(G)$.
+	\item If $H$ is a normal subgroup of $G$ then $\sum_{h \in H} h \in Z(\mathbb{C}G)$.
+\end{enumerate}
+We provide a simple proof for the last statement.
+\begin{proof}
+Take $z=\sum_{h \in H} h$ and $g\in G$. We then have
+\[
+	z^g = \sum_{h \in H} h^g = z.
+\]
+because $H$ is normal and hence fixed by conjugation of elements in $G$. 
+\end{proof}
+
+\begin{example}
+	Take $G = S_3 = \langle a=(1\;2\;3), b=(1\;2) \rangle$. Then $\sum_{g\in G} \in \mathbb{C}G$.
+\end{example}
+%What is this example even?
+
+\begin{lemma}
+Let $V$ be an irreducible $\mathbb{C}G$-module and let $z \in Z(\mathbb{C}G)$. There exists $\lambda \in \mathbb{C}$ such that $vz = \lambda v$ for all $v\in V$.
+\end{lemma}
+%Proof of lemma
+
+\begin{remark}
+Note that $\mathbb{C}G$ is a faithful module.
+\end{remark}
+
+\begin{lemma}
+If there exists a faithful, irreducible $\mathbb{C}G$-module then $Z(G)$ is cyclic.
+\end{lemma}
+%Proof of lemma
+
+\begin{example}
+	$\mathbb{Z}_4$ has a faithful, irreducible representation by taking 1 to the 4-th root of unity. However $\mathbb{Z}_2\times\mathbb{Z}_2$ has no faithful irreducible representation as its center is not cyclic.
+\end{example}
+
+\begin{remark}
+Note that the converse is not true in general. There exists groups with cyclic centers but no faithful, irreducible representations. See Frobenius Groups.
+\end{remark}
+
+%State it's the converse
+\begin{lemma}
+	Suppose $G$ finite and every irreducible $\mathbb{C}G$-module has dimension 1. Then $G$ is abelian.
+\end{lemma}
+%Proof
+
+
+\subsection{The Group Algebra and Irreducible Modules}
+
+
+\begin{lemma}
+	Let $V,W$ be $\mathbb{C}G$-modules and $\theta : V \to W$ is a $\mathbb{C}G$-homomorphism. There exists a submodule $U < V$ such that $V = \ker\theta \oplus U$ and $U \simeq \im\theta$
+\end{lemma}
+%Proof
+
+
 \end{document}
