@@ -1119,13 +1119,7 @@ Choose $x \in G$, then $v(gx) = v(xg)$ for all $g \in G$, and so $v \mapsto vx$ 
 \section{Lecture 6}
 
 
-
-We continue our descussion of the representations of abelian groups.
-\begin{lemma}
-Let $G$ be a finite abelian group. Every irreducible $\mathbb{C}G$-module has dimension 1.
-\end{lemma}
-
-Instead we prove a stronger theorem in which we construct these representations by mapping group elements to roots of unity. But first recall the Fundamental Theorem of Abelian Groups which states that any finite abelian group $G$ is isomorphic to the direct sum of cyclic groups
+Continuing our discussion of the representations of abelian groups, we provide a stronger theorem in which we construct these 1-dimensional representations by mapping group elements to roots of unity. But first recall the Fundamental Theorem of Abelian Groups which states that any finite abelian group $G$ is isomorphic to the direct sum of cyclic groups
 \[
 	G \simeq C_{n_1} \oplus \cdots \oplus C_{n_r}
 \]
@@ -1141,7 +1135,7 @@ Suppose $G\simeq C_{n_1}\times\cdots\times C_{n_r}$ for cyclic groups $C_{n_i}$ 
 %Prove theorem
 
 \begin{example}
-Take $G=\langle a \mid a^n = 1 \rangle$ and $\omega = e^{2\pi i/n}$. The irreducable representations of $G$ are $\rho_{\omega^j}$ for $0 \leq j \leq n-1$ defined by
+Take $G=\langle a \mid a^n = 1 \rangle$ and $\omega = e^{2\pi i/n}$. The irreducible representations of $G$ are $\rho_{\omega^j}$ for $0 \leq j \leq n-1$ defined by
 \[
 	a^k \rho_{\omega^j} = \omega^{jk}, \quad 0 \leq k \leq n-1.
 \]
@@ -1150,6 +1144,13 @@ Take $G=\langle a \mid a^n = 1 \rangle$ and $\omega = e^{2\pi i/n}$. The irreduc
 %Klein-4 group example
 
 %Diagonalisation?
+%\subsection{Diagonalisation}
+%
+%\begin{lemma}
+%	Let $G = \langle g\rangle$ be a cyclic group of order $n$ and take $V$ a $\mathbb{C}G$-module. We can write $V = U_1 \oplus\cdots\oplus U_r$, $U_i$ irreducible of dimension 1. Take $\omega = 2^{2\pi i/n}$ define the action of $G$ on $V$ bu $u_i\cdot g = \omega^{m_i}u_i$ for each $i$. There exists a basis $B=(u_1,\ldots,u_r)$ such that $[[g]_B$ is diagonal.
+%\end{lemma}
+
+
 
 \subsection{Application of Schur's to $\mathbb{C}G$}
 
@@ -1160,7 +1161,7 @@ If $G$ is a finite group then we define the center of the group algebra $Z(\math
 \]
 \end{definition}
 
-%Remark
+We now state some simple properties of the center:
 \begin{enumerate}
 	\item $Z(\mathbb{C}G)$ is a subspace of $\mathbb{C}G$.
 	\item If $G$ is abelian then $Z(\mathbb{C}G) = \mathbb{C}Z(G)$.
@@ -1176,14 +1177,16 @@ because $H$ is normal and hence fixed by conjugation of elements in $G$.
 \end{proof}
 
 \begin{example}
-	Take $G = S_3 = \langle a=(1\;2\;3), b=(1\;2) \rangle$. Then $\sum_{g\in G} \in \mathbb{C}G$.
+	Take $G = S_3 = \langle a=(1\;2\;3), b=(1\;2) \rangle$. Then $\sum_{g\in G} \in Z(\mathbb{C}G)$.
 \end{example}
 %What is this example even?
 
 \begin{lemma}
 Let $V$ be an irreducible $\mathbb{C}G$-module and let $z \in Z(\mathbb{C}G)$. There exists $\lambda \in \mathbb{C}$ such that $vz = \lambda v$ for all $v\in V$.
 \end{lemma}
-%Proof of lemma
+\begin{proof}
+For all $r\in\mathbb{C}G$ and $v\in V$ we know $vrz = vzr$. Thus the mapping $v\mapsto vz$ is a $\mathbb{C}G$-homomorphism from $V$ to $V$. The result then follows by Schur.
+\end{proof}
 
 \begin{remark}
 Note that $\mathbb{C}G$ is a faithful module.
@@ -1192,19 +1195,21 @@ Note that $\mathbb{C}G$ is a faithful module.
 \begin{lemma}
 If there exists a faithful, irreducible $\mathbb{C}G$-module then $Z(G)$ is cyclic.
 \end{lemma}
-%Proof of lemma
+\begin{proof}
+Let $V$ be an irreducible, faithful $\mathbb{C}G$-module and take $z\in Z(G)\subset Z(\mathbb{C}G)$. There exists $\lambda_z\in\mathbb{C}$ such that $vz = \lambda_z v$ for all $v\in V$. But since $V$ is faithful the mapping $z\mapsto \lambda_z$ is injective from $Z(G)$ to $\mathbb{C}^\times$ and so $Z(G) \simeq \{\lambda_z \mid z\in Z(G)\}$ is a finite subgroup of $\mathbb{C}^\times$. All of which are cyclic.
+\end{proof}
 
 \begin{example}
-	$\mathbb{Z}_4$ has a faithful, irreducible representation by taking 1 to the 4-th root of unity. However $\mathbb{Z}_2\times\mathbb{Z}_2$ has no faithful irreducible representation as its center is not cyclic.
+$\mathbb{Z}_4$ has a faithful, irreducible representation by taking 1 to the 4-th root of unity. However $\mathbb{Z}_2\times\mathbb{Z}_2$ has no faithful irreducible representation as its center is not cyclic.
 \end{example}
 
 \begin{remark}
 Note that the converse is not true in general. There exists groups with cyclic centers but no faithful, irreducible representations. See Frobenius Groups.
 \end{remark}
 
-%State it's the converse
+%State the converse
 \begin{lemma}
-	Suppose $G$ finite and every irreducible $\mathbb{C}G$-module has dimension 1. Then $G$ is abelian.
+Suppose $G$ finite and every irreducible $\mathbb{C}G$-module has dimension 1. Then $G$ is abelian.
 \end{lemma}
 %Proof
 
@@ -1213,9 +1218,18 @@ Note that the converse is not true in general. There exists groups with cyclic c
 
 
 \begin{lemma}
-	Let $V,W$ be $\mathbb{C}G$-modules and $\theta : V \to W$ is a $\mathbb{C}G$-homomorphism. There exists a submodule $U < V$ such that $V = \ker\theta \oplus U$ and $U \simeq \im\theta$
+Let $V,W$ be $\mathbb{C}G$-modules and $\theta : V \to W$ is a $\mathbb{C}G$-homomorphism. There exists a submodule $U < V$ such that $V = \ker\theta \oplus U$ and $U \simeq \im\theta$
 \end{lemma}
-%Proof
+\begin{proof}
+We apply Maschke's theorem to $\ker\theta < V$ and obtain submodule $U < V$ such that $V = \ker\theta \oplus U$. Now define the map $\overline\theta : U \to \im\theta$ by $u\mapsto u\theta$ which is a homomorphism because it is the restriction of $\theta$ to a subspace. The kernel of $\overline\theta$ is trivial as $\ker\overline\theta = \ker\theta\cap U = \{0\}$. And $\im\theta = \im\overline\theta$ because if $w\in\im\theta$ then $w=v\theta$ for some $v\in V$ and $v=k + u$ for some $u\in U$ and $k\in\ker\theta$. We then have
+\[
+	w = v\theta = (u+k)\theta = u\theta = u\overline\theta \in \im\overline\theta.
+\]
+Finally, by the first isomorphism theorem we obtain
+\[
+	U \simeq U/\ker\overline\theta \simeq \im\overline\theta = \im\theta.
+\]
+\end{proof}
 
 
 \end{document}
