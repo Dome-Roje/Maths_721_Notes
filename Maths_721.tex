@@ -114,6 +114,7 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\CG}{\mathbb{C}G}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
@@ -703,27 +704,27 @@ That is, $FG$ is an associative algebra with unit
 \end{example}
 Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 \[v\cdot r = v\cdot \left(\sum_{g\in G}\mu_g g\right) = \sum_{g\in G}\mu_g(v\cdot g)\]
-\begin{lemma}
+\begin{lemma}\label{Lem:FG}
 	For $u,v\in V$, $\lambda\in F$, $r,s\in FG$:
 	\begin{enumerate}[label=\emph{(\Roman*)}]
 		\item $vr\in FG$
 		\item $(vr)s = v(rs)$
 		\item $v1=v$
 		\item $(\lambda v)r=\lambda(vr)=v(\lambda r)$
-		\item $(r+s)v=rv+sv$
-		\item $r(u+v)=ru+rv$
+		\item $v(r+s)=vr+vs$
+		\item $(u+v)r=ur+vr$
 		\item $r0=v0=0$
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
-	1,3 and the first part of 7 follow from $V$ being an $FG$-module, the second equality of $7$ follows from scalar multiplication by 0 in $V$. The following calculation:
+	I,III and the first part of VII follow from $V$ being an $FG$-module, the second equality of VII follows from scalar multiplication by 0 in $V$. The following calculation:
 	\begin{align*}
 	(\lambda v)r &= \sum_{g\in G}\mu_g((\lambda v)g)\\
 	&=\sum_{g\in G}\mu_g(\lambda (vg))\\
 	&=\sum_{g\in G}(\lambda \mu_g)(vg)=v(\lambda r)\\
 	&=\lambda\sum_{g\in G}\mu_g (vg)\\
 	&=\lambda(vg)\\
-	\end{align*}proves 4. 6 follows from the linearity of the action of $G$ on $V$. 5 follows from distributivity of scalar multiplication in $V$. Finally, to prove 2:
+	\end{align*}proves IV. VI follows from the linearity of the action of $G$ on $V$. V follows from distributivity of scalar multiplication in $V$. Finally, to prove II:
 	\begin{align*}
 	v(rs)&=\sum_{(g,h)\in G\times G}(\mu_g\lambda_h(v(gh)))\\
 	&= \sum_{h\in G}\lambda_h\sum_{g\in G}\mu_g(gv)h\\
@@ -869,7 +870,7 @@ Define the projection map $\pi_i: u_1 + u_2 +...+ u_n \mapsto u_i$. Then
 \[
 	V = \sum U_i
 \]
-where the $U_i$ are irreducible. Then $V$ is the direct sum of the subset of the $U_i$. 
+where the $U_i$ are irreducible. Then $V$ is the direct sum of some subset of the $U_i$. 
 \end{lemma}
 \begin{proof}
 	This follows from the fact that the intersection of two distinct irreducible modules is trivial (again, simple checking).
@@ -920,7 +921,7 @@ which implies the result.
 
 
 % -------------------------------------------------------------------
-% LECTURE 6
+% LECTURE 5
 % -------------------------------------------------------------------
 
 
@@ -1217,7 +1218,7 @@ Suppose $G$ finite and every irreducible $\mathbb{C}G$-module has dimension 1. T
 \subsection{The Group Algebra and Irreducible Modules}
 
 
-\begin{lemma}
+\begin{lemma}\label{Lem:FIT}
 Let $V,W$ be $\mathbb{C}G$-modules and $\theta : V \to W$ is a $\mathbb{C}G$-homomorphism. There exists a submodule $U < V$ such that $V = \ker\theta \oplus U$ and $U \simeq \im\theta$
 \end{lemma}
 \begin{proof}
@@ -1232,4 +1233,57 @@ Finally, by the first isomorphism theorem we obtain
 \end{proof}
 
 
+
+% ---------------------------------------------------------------------------------
+% LECTURE 7
+% ---------------------------------------------------------------------------------
+
+
+
+\section{Lecture 7}
+
+\subsection{The Group Algebra and Irreducible Modules: Part II}
+
+
+\begin{definition}
+	For $V$, a $\CG$-module, $U$ an irreducible $\CG$-module, $U$ is called a composition factor for $V$ if $V$ has a $\CG$-submodule isomorphic to $U$.
+\end{definition}
+
+\begin{lemma}\label{Lem:decomp}
+	Let $V$ be a $\CG$-module, suppose we have a finite decomposition into into a direct sum of irreducible $\CG$-modules:
+	\[
+	V = \bigoplus_{i=1}^n U_i
+	\]
+	Then, if $0<U<V$ is an irreducible, $\CG$-submodule of $V$, then $U\simeq U_i$ for some $1\leq i\leq n$.
+\end{lemma}
+
+\begin{proof}
+	Consider the maps $\pi_i:U\rightarrow U_i$, since each $\pi_i:V\rightarrow U_i$ is a $\CG$-homomorphism, and since $U$ is non-trivial, it is clear that not all the $\pi_i$ are the zero map, let $\pi_j$ be such a projection, then by Schur, $\pi_j:U\rightarrow U_j$ is a $\CG$-isomorphism.
+\end{proof}
+\begin{theorem}
+	Let the following be a decomposition of the regular representation into irreducible $\CG$-modules:
+	\[
+	\CG = \bigoplus_{i = 1}^n U_i
+	\]
+	Then every irreducible $\CG$-module is isomorphic to $U_i$ for some $1\leq i\leq n$
+\end{theorem}
+\begin{proof}
+	Let $W$ be an irreducible $\CG$-module, let $0\neq w\in W$, then $wG = \{wr:r\in \CG\}$ is a $\CG$-submodule of $W$. However, $W$ is irreducible, so $W=wG$. Define $\theta:\CG\rightarrow W$ by $r\theta = wr$ for $r\in \CG$, then $\theta$ is a linear $\CG$-homomorphism by \ref{Lem:FG} and $\im\theta=W$. So $\CG = \ker\theta\oplus U$, where $U\simeq \im \theta\simeq W$ by \ref{Lem:FIT}. Now $W$ is irreducible, so $U$ is irreducible, so by \ref{Lem:decomp}, $U\simeq U_i\simeq W$ for some $1\leq i\leq n$.
+\end{proof}
+
+Now for a finite group $G$, we can characterise all irreducible $\CG$-modules by decomposing $\CG$.
+
+\begin{example}
+	Let $G = C_3 = \langle a|a^3=1\rangle$, then let $\omega = e^{\frac{2\pi i}{3}}$ be a primitive 3rd root of unity and let the following be elements of $\CG$:
+	\[
+	v_1 = 1+a+a^2,\qquad v_2 = 1+\omega^2 a+\omega a^2,\qquad v_3 = 1+\omega a +\omega^2 a^2
+	\]
+	We have $(v_1)a = v_1$, $(v_2)a = \omega+a+\omega^2a^2=\omega v_2$ and $(v_3)a = \omega^2+a+\omega a = \omega^2v_3$
+	Therefore, $V_i = \langle v_i\rangle<\CG$ for $i=1,2,3$ are all irreducible submodules of $\CG$.
+	
+	Furthermore, it is clear that $\{v_1,v_2,v_3\}$ forms a basis for $\CG$, hence $\CG=V_1\oplus V_2\oplus V_3$.
+\end{example}
+\begin{example}
+	Let $G = D_6 = \langle a,b|a^3=1,a^b=a^{-1}\rangle$.
+\end{example}
 \end{document}
