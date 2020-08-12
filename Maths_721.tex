@@ -114,7 +114,7 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\CG}{\mathbb{C}G}
+\newcommand{\CG}{{\mathbb{C}G}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
@@ -1286,4 +1286,54 @@ Now for a finite group $G$, we can characterise all irreducible $\CG$-modules by
 \begin{example}
 	Let $G = D_6 = \langle a,b|a^3=1,a^b=a^{-1}\rangle$.
 \end{example}
+\subsection{The Vector Space of $\CG$-homomorphisms}
+
+\begin{definition}
+	Let $V,W$ be $\CG$-modules, then define $H = \hom_\CG(V,W) = \{\theta:V\rightarrow W: \theta $ is a $\CG$ homomorphism$\}$.
+\end{definition}
+We can then define addition and scalar multiplication operations on this set for $\theta,\phi\in H$, $\lambda\in \C$ as follows:
+\[v(\theta+\phi):=v\theta+v\phi,\qquad v(\lambda\theta)=\lambda(v\theta)\]
+\begin{lemma}
+	The space $H$ with the operations defined above is a vector space over $\C$.
+\end{lemma}
+\begin{proof}
+	Clear from the definition, note that the zero homomorphism is: $v0=0_W$.
+\end{proof}
+\begin{lemma}
+	For irreducible $\CG$-modules, $V,W$,
+	\[
+	\dim(H) = \begin{cases}
+	1 & V\simeq W\\
+	0 & V\not\simeq W
+	\end{cases}
+	\]
+\end{lemma}
+\begin{proof}
+	If $V\not\simeq W$, then it follows that $\theta=0$ for all $\theta\in H$ by Schur.
+	
+	Now, suppose $V\simeq W$ and let $\theta:V\rightarrow W$ be an isomorphism. Now, let $\phi\in H$, we have that $\phi\theta^{-1}:V\rightarrow V$ is a homomorphism, so by Schur, $\phi\theta^{-1}=\lambda \identity_V$, so for $v\in V$, $v\phi\theta^{-1}=\lambda v\implies v\phi\theta^{-1}\theta=v\phi=(\lambda v)\theta=\lambda(v\theta)$, therefore $\phi=\lambda \theta$, so $\dim H=1.$
+\end{proof}
+\begin{proposition}
+	Given $V,V_1,V_2,W,W_1,W_2$ $\CG$-modules, 
+	\begin{enumerate}
+		\item $\dim\hom_\CG(V,W_1\oplus W_2)=\dim\hom_\CG(V,W_1)+\dim\hom_\CG(V,W_2)$
+		\item $\dim\hom_\CG(V_1\oplus V_2,W)=\dim\hom_\CG(V_1,W)+\dim\hom_\CG(V_2,W)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	I will prove the first statement and the conversion of the proof ot the second statement is left as a simple exercise.
+	
+	Firstly, we define the projection homomorphisms: $\pi_i:W_1\oplus W_2\rightarrow W_i$ defined by $(w_1+w_2)\pi_i=w_i$. Now, if $\theta\in \hom_\CG(V,W_1\oplus W_2)$, we have that $\theta\pi_i\in \hom_\CG(V,W_i)$. 
+	
+	Define a linear map $f:\hom_\CG(V,W_1\oplus W_2)\rightarrow \hom_\CG(V,W_1)\oplus\hom_\CG(V,W_2)$ by $\theta\mapsto \theta\pi_1\oplus\theta\pi_2$ then it is clear that the following map is an inverse of $f$: \[
+	v(\theta_1\oplus\theta_2)f^{-1}=v\theta_1+v\theta_2
+	\]
+	therefore we have an isomorphism of vector spaces, $\hom_\CG(V,W_1\oplus W_2)\simeq \hom_\CG(V,W_1)\oplus\hom_\CG(V,W_2)$, giving us $\dim\hom_\CG(V,W_1\oplus W_2)=\dim\hom_\CG(V,W_1)\oplus\hom_\CG(V,W_2) = \dim\hom_\CG(V_1,W)+\dim\hom_\CG(V_2,W)$
+\end{proof}
+\begin{corollary}
+	For $V_1,\dots V_n$, $W_1,\dots W_m$, if $V = \bigotimes_{i=1}^nV_i$ and $W = \bigotimes_{i=1}^mW_i$
+	\[
+	\dim H = \sum_{i=1}^{n}\sum_{j=1}^m\dim\hom_\CG(V_i,W_j)
+	\]
+\end{corollary}
 \end{document}
