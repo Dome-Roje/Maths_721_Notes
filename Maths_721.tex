@@ -760,7 +760,7 @@ Now, if we have an $FG$-module, $V$, then $FG$ acts on $V$ in the following way:
 	Let $V$ and $W$ be $FG$-modules. A \textit{homomorphism} of $FG$-modules is a map $\sigma: V \rightarrow W$ which is a linear transformation and also satisfies $(vg)\sigma = (v\sigma)g$ for all $g\in G, v\in V$. The \textit{kernel} and \textit{image} are defined in the obvious way
 \end{definition}
 Equivalently, it is a homomorphism of modules over the ring $FG$. Indeed:
-\begin{problem}
+\begin{problem}\thlabel{module-hom}
 	Suppose $r\in FG$ is an element of the group algebra. Prove that $(vr)\sigma = (v\sigma)r$.
 \end{problem}
 
@@ -1212,8 +1212,9 @@ Note that the converse is not true in general. There exists groups with cyclic c
 \begin{lemma}
 Suppose $G$ finite and every irreducible $\mathbb{C}G$-module has dimension 1. Then $G$ is abelian.
 \end{lemma}
-%Proof
-
+\begin{proof}
+	Since $\CG$ is is a $\CG$-module and it is completely reducible, we can decompose it as follows \[\CG = \bigoplus_{i = 1}^{|G|} V_i\] where each $V_i$ is one-dimensional. For any $v_i\in V_i$ and $x,y\in G$, note that \[v_ixy = \lambda_xv_iy = \lambda_y\lambda_xv_i = \lambda_x\lambda_yv_i = v_iyx\] Since the $v_i$ form a basis for $\CG$ this means $vxy = vyx$ for all $v\in \CG$ and $x,y\in G$. Since $\CG$ is faithful, the result follows.
+\end{proof}
 
 \subsection{The Group Algebra and Irreducible Modules}
 
@@ -1336,4 +1337,54 @@ We can then define addition and scalar multiplication operations on this set for
 	\dim H = \sum_{i=1}^{n}\sum_{j=1}^m\dim\hom_\CG(V_i,W_j)
 	\]
 \end{corollary}
+\begin{corollary}\thlabel{number-iso-to}
+	Suppose $$V = \bigoplus_{j = 1}^n U_j$$ Then for any irreducible module $W$ \[\dim \hom(V, W) = \dim \hom(W, V) = |\{j \mid U_j\cong W\}|\]
+\end{corollary}
+\begin{example}
+	Recall that $$\C D_3 = \bigoplus_{i = 1}^4 U_i$$ where $U_3 \cong U_4$. Then $$\dim \hom(\C D_3, U_3) = 2$$
+\end{example}
+
+
+
+
+%-----------------------------------------------------------------------------
+% LECTURE 8
+%-----------------------------------------------------------------------------
+
+
+\section{Lecture 8}
+
+We continue the discussion last lecture about $\hom(U, V)$.
+
+\begin{lemma}
+	Let $V, W$ be two $\CG$-modules such that $\hom(V, W)$ is nonzero. Then $V$ and $W$ share a composition factor.
+\end{lemma}
+\begin{proof}
+	Supopse we have a morphism $\theta: V \rightarrow W$. Then there exists some $v\in  V$ such that $v\theta \neq 1$. Now $v$ is contained in some irreducible submodule, say $V_0$. Then $V_0\theta \cong V_0$.
+\end{proof}
+
+\begin{lemma}\thlabel{hom-dim}
+	Let $U$ be a $\CG$-module. Then $$\dim\hom(\CG, U) = \dim U$$. 
+\end{lemma}
+\begin{proof}
+	Fix a basis $\{u_1,\ldots,u_n\}$ for $U$ and define $\varphi_i: \CG \rightarrow U$ as $r\mapsto u_ir$. We claim the $\varphi_i$ form a basis for $\hom(\CG, U)$. Indeed, let $\varphi\in \hom(\CG, U)$ and suppose \[(1)\varphi = \sum_{i = 1}^n \lambda_i u_i  \] Then for all $r\in \CG$ we have \[(r)\varphi = (1)\varphi r = (\sum_{i = 1}^n \lambda_i u_i)r = \sum_{i = 1}^n \lambda_i u_ir = \sum_{i = 1}^n \lambda_i (r)\varphi_i\] where the first equality follows from \thref{module-hom}
+\end{proof}
+
+\begin{theorem}
+	Suppose $$\CG = \bigoplus_{j = 1}^n V_j$$ and $U$ is an irreducible module. Then the number of $j$ such that $V_j\cong U$ is exactly $\dim U$
+\end{theorem}
+\begin{proof}
+	Combine \thlabel{hom-dim} and \thlabel{number-iso-to}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
