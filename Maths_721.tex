@@ -1377,6 +1377,23 @@ We continue the discussion last lecture about $\hom(U, V)$.
 	Combine \thref{hom-dim} and \thref{number-iso-to}
 \end{proof}
 
+\begin{example}
+	Recall that $$\C D_3 = \bigoplus_{i = 1}^4 U_i$$ where $U_3 \cong U_4$ but $U_1 \ncong U_2$. Then $U_1$ and $U_2$ occur once whereas $U_3$ occurs twice, consistently with the theorem.
+\end{example}
+
+\begin{theorem}
+	Let $V_1,...,V_n$ denote a complete set of irreducible modules that are pairwise non-isomorphic. Then \[\sum_{i = 1}^n (\dim V_i)^2 = |G|\]
+\end{theorem}
+\begin{proof}
+	Suppose $$\CG = \bigoplus_{j = 1}^N U_j$$ where for each $V_i$ there are exactly $\dim V_i$ of the $U_j$ isomorphic to $V_i$. Thus we have $$|G| = \dim \CG = \sum_{i = 1}^N \sum_{j = 1}^{\dim V_i} \dim U_j = \sum_{i = 1}^N \sum_{j = 1}^{\dim V_i} \dim V_i = \sum_{i = 1}^n (\dim V_i)^2$$
+\end{proof}
+
+Observe that $\CG$ always has a trivial submodule, namely the module spanned by $\sum_{g\in G} g$.
+
+\begin{example}
+	Note that $|D_3| = 6$ and $6 = 1^2 + 1^2 + 2^2$. This is the only way; indeed, if all irreducible submodules are of dimension 1, then $D_3$ would be abelian, which is obviously false.
+\end{example}
+
 
 
 
