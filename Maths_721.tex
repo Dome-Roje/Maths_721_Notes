@@ -935,7 +935,7 @@ We begin with consequences of Maschke's theorem.
 \begin{example}
 Let $G = S_3$, and $V = \langle v_1,v_2,v_3 \rangle$ is the permutation module. Let $U$ be the submodule of $V$ defined as $U = \langle v_1 + v_2 + v_3 \rangle < V$. Suppose $W_0 = \langle v_1, v_2 \rangle$, so that $V = U \oplus W_0$ as subspaces. Define a projection $\phi : V \to U$ by $v_1 \mapsto 0$, $v_2 \mapsto 0$, and $v_3 \mapsto v_1 + v_2 + v_3$. Further, define $\theta : V \to V$, as in proof of Maschke's theorem, so that
 \[
-    v\theta = \frac{1}{|G|}\sum_{g \in G}vg\theta g^{-1} = \frac{1}{6}\sum_{g \in S_3}vg\theta g^{-1}.
+    v\theta = \frac{1}{|G|}\sum_{g \in G}vg\phi g^{-1} = \frac{1}{6}\sum_{g \in S_3}vg\phi g^{-1}.
 \]
 Consider the action of $\theta$ on the basis elements $v_i$, then a short computation shows that
 \[
@@ -1451,11 +1451,11 @@ Observe that $\CG$ always has a trivial submodule, namely the module spanned by 
 
 Suppose $G$ is a group. We define a equivalence relation on $G$ called \textbf{conjugacy} by
 \[
-    x \sim y \iff y = x^y = g^{-1}xg, \quad \text{for some }g \in G.
+    x \sim y \iff y = x^g = g^{-1}xg, \quad \text{for some }g \in G.
 \]
 The equivalence class
 \[
-    x^G = G^{-1}yG = \{g^{-1}xg \mid g \in G\},
+    x^G = G^{-1}xG = \{g^{-1}xg \mid g \in G\},
 \]
 is called the \textbf{conjugacy class} of $x$.
 
@@ -1509,7 +1509,7 @@ Hence let $\Lambda$ denote the set of right cosets of $C_G(x)$ in $G$, and defin
     f : x^G &\to \Lambda\\
     g^{-1}xg &\mapsto C_G(x).
 \end{align*}
-Then $f$ is well-defined by the previous working. Moreover, the previous working also shows that $f$ is injective, and it is clearly surjective. Thus $|G : C_G(x)|$.
+Then $f$ is well-defined by the previous working. Moreover, the previous working also shows that $f$ is injective, and it is clearly surjective. Thus $|x^G| = |G : C_G(x)|$.
 \end{proof}
 
 Observe that
@@ -1536,5 +1536,172 @@ As $G$ is a disjoint union of conjugacy classes, we have
 Finally use the fact that $x \in Z(G)$ if, and only if, $|x^G| = 1$. The fact $|x_i^G| = |G : C_G(x_i)|$, and both components divide $|G|$ follow from the orbit-stabiliser theorem. 
 \end{proof}
 
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------
+% LECTURE 10
+% ----------------------------------------------------
+
+
+\section{Lecture 10}
+
+
+\subsection{Class Sums}
+
+\begin{definition}
+Let $C$ be a conjugacy class of group $G$. We define a class sum to be the sum off all elements in our conjugacy class denoted
+\[
+	\overline C = \sum_{g\in C}g.
+\]
+\end{definition}
+
+We now note the importance of these sums in the following theorem.
+
+\begin{theorem}
+The class sums $\overline C_1, \ldots, \overline C_l$ form a basis for $Z(\mathbb{C}G)$.
+\end{theorem}
+
+\begin{proof}
+	We first note that the class sums are closed under conjugation and therefore are elements of the center. Now suppose $\sum_{i=1}^l\lambda_i\overline C_i = 0$. Since conjuacy classes are pairwise disjoint we obtain $\lambda_i = 0$ for all $1\leq i \leq l$ so the $\overline C_i$ are linearly independent. We now need to show they span $Z(\mathbb{C}G)$. Pick some $r = \sum_{g\in G}\lambda_gg \in Z(\mathbb{C}G)$ and $h\in G$. Since $r$ is central $r^h = r$ and therefore
+	\[
+		\sum_{g\in G}\lambda_g g^h= \sum_{g\in G}\lambda_g g.
+	\]
+	Since the $h\in G$ was arbitrary we see that if $x\sim y$ then $\lambda_x = \lambda_y$ so $r$ can be written as a sum of class sums.
+\end{proof}
+
+Note now that we immediately obtain an important result. The dimension of $Z(\mathbb{C}G)$ is exactly the number of conjugacy classes of $G$.
+
+\begin{example}
+Let $G = S_3$. The conjugacy classes of $S_3$ are given by
+\[
+	\{\varepsilon\}, \{(1\;2), (2\;3), (1\;3)\}, \{(1\;2\;3), (1\;3\;2)\}.
+\]
+Then $Z(\mathbb{C}G)$ has dimension 3.
+\[
+	Z(\mathbb{C}G) = \langle 1, (1\;2) + (2\;3) +(1\;3), (1\;2\;3) + (1\;3\;2) \rangle.
+\]
+\end{example}
+
+
+
+\subsection{Characters}
+
+\begin{definition}
+If $A = (a_{ij})$ is an $n\times n$ matrix, then the trace of $A$ is the sum of the diagonal elements.
+\[
+	\tr A = \sum_{i=1}^n a_{ii}
+\]
+\end{definition}
+
+We now present some basic properties of the trace.
+
+\begin{lemma}
+Let $A,B,T\in M_{n}(\mathbb{C})$ and $T$ be invertable.
+\begin{enumerate}[label=\emph{(\Roman*)}]
+	\item $\tr(A+B) = \tr(A) + \tr(B)$
+	\item $\tr(AB) = \tr(BA)$
+	\item $\tr(T^{-1}AT) = \tr(A)$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(I) and (II) follow from the fact that if $C = A + B$ then $c_{ii} = a_{ii} + b_{ii}$ and if $D = AB$ then $d_{ii} = a_{ii}b_{ii}$. (III) follows from an application of (II)
+\[
+	\tr(T^{-1}AT) = \tr(T^{-1}(AT)) = \tr((AT)T^{-1}) = \tr(A).
+\]
+\end{proof}
+
+Now that we have the machinery to describe them we define a character.
+
+\begin{definition}
+	Let $V$ be a $\mathbb{C}G$ module with basis $B$. The character of $V$ is the map $\chi: G\to\mathbb{C}$ defined by
+\[
+	\chi(g) = \tr [g]_B.
+\]
+\end{definition}
+
+Note that by property (III) of the trace that a character is independent of basis and so we uniquely associate a character to a $\mathbb{C}G$ module. In the following lemma we see that we can associate a character to a module up to isomorphism.
+
+\begin{lemma} ~
+\begin{enumerate}[label=\emph{(\Roman*)}]
+	\item Isomorphic $\mathbb{CG}$ modules have the same character.
+	\item If $x,y\in G$ then $x\sim y \implies \tr[x] = \tr[y]$.
+\end{enumerate}
+\end{lemma}
+
+
+\begin{proof}
+(I) If $V$ and $W$ are isomorphic $\mathbb{C}G$-modules then there exists bases $B_1, B_2$ such that $[g]_{B_1} = [g]_{B_2}$ for all $g\in G$.
+
+	(II) If $x\sim y$ then $x = g^{-1}yg$ for some $g\in G$. Then $\tr[x] = \tr[g^{-1}yg] = \tr[y]$.
+\end{proof}
+
+\begin{example}
+Let $G = S_3 = \langle a=(1\;2),b=(1\;2\;3)$ and let $V = \langle v_1,v_2,v_3 \rangle$ be the permutation module of $G$. We then have representations
+\[
+	[a] = \begin{pmatrix} 0&1&0\\ 1&0&0\\ 0&0&1 \end{pmatrix}, \quad
+	[b] = \begin{pmatrix} 0&1&0\\ 0&0&1\\ 1&0&0 \end{pmatrix}.
+\]
+and therefore character of the permutation module $\chi$ satisfies
+\[
+	\chi(a) = 1, \quad \chi(b) = 0.
+\]
+Note that because characters are constant on conjugacy classes, to specify a character of a group we only need to define it on the group's classes. As a result here we know that $\chi$ will take any 2-cycle to 1 and any 3-cycle to 0.
+\end{example}
+
+\begin{definition}
+The dimension of a character $\chi$ is $\chi(1)$.
+\end{definition}
+
+The character of a one-dimensional $\mathbb{C}G$-module is called a linear character. By Schur's lemma for each $g\in G$ there exists some $\lambda_g$ such that $vg = \lambda_gv$ for all $v\in V$. Thus a linear character will take $v\mapsto \lambda_g$.
+
+\begin{lemma}
+	Every linear character is a homomorphism from $G$ to $\mathbb{C}^*$; The multiplicative group of $\mathbb{C}$.
+\end{lemma}
+
+\begin{proof}
+Suppose $\chi$ is a linear character of $G$. Note that $\chi(e) = \lambda_e = 1$ and if $g\in G$ then $\chi(g)\neq 0$ as $\chi(g)\chi(g^{-1}) = \chi(e) = 1$. Now pick $g,h\in G$. Then 
+\[
+	\chi(gh) = \lambda_{gh} = \lambda_g\lambda_h = \chi(g)\chi(h).
+\]
+\end{proof}
+
+Note that the multiplicative properties of a linear character don't hold for all characters in general. That is for matricies $A,B$, $\tr(AB) \neq \tr(A)\tr(B)$ in general.
+
+We now summarise some properties of a character.
+
+\begin{lemma}
+Let $V$ be a $\mathbb{C}G$-module with character $\chi$ and let $g\in G$ with $|g|=m$.
+\begin{enumerate}[label=\emph{(\Roman*)}]
+	\item $\chi(1) = \dim V$,
+	\item $\chi(g)$ is a sum of $m$-th roots of unity,
+	\item $\chi(g^{-1}) = \overline{\chi(g)}$,
+	\item $\chi(g)$ is real if $g\sim g^{-1}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(I) The representation of 1 will be the identity matrix. The trace of which is the dimension of the representation.
+
+(II) There is a basis of $V$ in which the representation of $g$ is a diagonal matrix of $m$-th roots of unity.
+
+(III) Note by the previous part we can write $\chi(G) = \sum{i=1}^n\omega_i$ where $\omega_i$ is an $m$-th root of unity. The representation of $g^{-1}$ will be the same diagonal matrix but with the inverse of each root of unity so $\chi(g^{-1}) = \sum_{i=1}^n \omega_i^{-1}$. However the inverse of a root of unity is its conjugate and the sum on conjugates is the conjugate of the sum so
+\[
+	\chi(g^{-1}) = \sum_{i=1}^n\overline{\omega_i} =\overline{\chi(g)}.
+\]
+
+(IV) This follows from (III).
+\end{proof}
+
+\begin{definition}
+The character of the trivial module is called the trivial character. It sends all elements of $G$ to 1. 
+\end{definition}
 
 \end{document}
