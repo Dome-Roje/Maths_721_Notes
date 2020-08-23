@@ -1388,7 +1388,7 @@ We can then define addition and scalar multiplication operations on this set for
 
 
 \section{Lecture 8}
-
+\subsection{The Dimension of $\hom(U, V)$}
 We continue the discussion last lecture about $\hom(U, V)$.
 
 \begin{lemma}
@@ -1677,7 +1677,7 @@ Note that the multiplicative properties of a linear character don't hold for all
 
 We now summarise some properties of a character.
 
-\begin{lemma}
+\begin{lemma}\label{Lem:Charm}
 Let $V$ be a $\mathbb{C}G$-module with character $\chi$ and let $g\in G$ with $|g|=m$.
 \begin{enumerate}[label=\emph{(\Roman*)}]
 	\item $\chi(1) = \dim V$,
@@ -1703,5 +1703,57 @@ Let $V$ be a $\mathbb{C}G$-module with character $\chi$ and let $g\in G$ with $|
 \begin{definition}
 The character of the trivial module is called the trivial character. It sends all elements of $G$ to 1. 
 \end{definition}
+
+\section{Lecture 11}
+\subsection{Restrictions on Characters}
+We start with a quick corollary to Lemma 10.11
+\begin{corollary}
+	Let $V$ be a $\mathbb{C}G$-module of dimension $n$ with character $\chi$ and let $g\in G$, suppose $|g|=2$, then $\chi(g)\in \Z$ and $\chi(g)\equiv \chi(1)\mod 2$
+\end{corollary}
+\begin{proof}
+	By \ref{Lem:Charm}, we have that $\chi(g) = \sum_{i=1}^n\omega_i$ for each $\omega_i$ a 2th-root of unity, that is, $\omega_i = \pm 1\equiv 1\mod 2$, therefore it is clear that $\chi(g)\in \Z$. We can also calculate, 
+	\[
+	\chi(g) = \sum_{i=1}^n\omega_i\equiv \sum_{i=1}^n1 \bmod 2 \equiv n\bmod 2 \equiv \chi(1)\bmod 2
+	\]
+	as $\chi(1)=n$ by \ref{Lem:Charm}.
+\end{proof}
+Note, that we can assign a character to a representation even more naturally as we assigned one to a module by $\chi = \tr\circ \rho$
+\begin{theorem}
+	Let $\phi:G\rightarrow GL(n,\C)$ be a representation of $G$  and let $\chi$ be the representation of $\phi$.
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item  For $g\in G$, $|\chi(g)| = \chi(1)\iff g\rho = \lambda I_n$ for some $\lambda\in \C$
+		\item $\ker \rho = \{g\in G:\chi(g) = \chi(1) = n\}$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	For (I), we firstly prove the reverse implication. Let $g\in G$ and let $m = |g|$, then $I_n = 1\rho = g^m\rho = \lambda^mI_n \implies \lambda^m = 1$, that is, $\lambda$ is an $m$-th root of unity. Since $\chi(g) = n\lambda$, we have $|\chi(g)| = n|\lambda| = n = \chi(1)$.
+	
+	Now, instead suppose that $|\chi(g)| = \chi(1) = n$. By \ref{Lem:Charm}, we can write $\chi(g) = \sum_{i=1}^n\omega_i$ where $\omega_i$ are $m$-th roots of unity. Therefore $|\chi(g)| = |\sum_{i=1}^n\omega_i| = n = \sum_{i=1}^n|\omega_i|$, by strict convexity of $\C$ with the absolute value, this is only true if each $\omega_i$ is a positive real multiple of every other $\omega_j$, however, all have length 1, therefore all the $\omega_i$ are equal. So $\chi(g) = \omega_1I_n$. 
+	
+	(II) Suppose $g\in \ker\rho$, then $\chi(g) = \tr(I_n) = n = \chi(1)$. Now, instead, suppose that $\chi(g) = \chi(1) = n$, then by (I), $g\rho = \lambda I_n$ for some $\lambda\in \C$. Therefore $\chi(1) = \chi(g) = \lambda\chi(1)$, so $\lambda = 1$ and $g\rho = I_n\implies g\in\ker\rho$.
+\end{proof}
+
+\begin{definition}
+	Let $\chi$ be a character of $G$. We define the kernel of $\chi$ by:
+	\[
+	\ker\chi = \{g\in G:\chi(g) = \chi(1)\}
+	\]
+	If $\rho$ is a representation of $G$ and $\chi$ is its character, we get $\ker\chi = \ker\rho$. Therefore $\ker\chi\unlhd G$. And $\rho$ is faithful if and only if $\ker\chi = \{1\}$.
+\end{definition}
+\begin{example}
+	$G = D_6$
+
+\begin{tabular}{l|l|l|l|l|l|l|}
+	& $1$ & $a$  & $a^2$ & $b$  & $ab$ & $a^2b$  \\ 
+	\hline
+	$\chi_1$ & $1$ & $1$  & $1$   & $1$  & $1$  & $1$     \\ 
+	\hline
+	$\chi_2$ & $1$ & $1$  & $1$   & $-1$ & $-1$ & $-1$    \\ 
+	\hline
+	$\chi_3$ & $2$ & $-1$ & $-1$  & $0$  & $0$  & $0$     \\
+	\hline
+\end{tabular}
+
+\end{example}
 
 \end{document}
