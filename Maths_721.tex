@@ -197,6 +197,7 @@
 \newcommand{\vphi}{\varphi}
 \newcommand{\normsub}{\unlhd}
 \newcommand{\snormsub}{\lhd}
+\newcommand{\Sets}{\textbf{Sets}}
 \title{Maths 721 Notes}
 \date{2020}
 
@@ -1704,6 +1705,13 @@ Let $V$ be a $\mathbb{C}G$-module with character $\chi$ and let $g\in G$ with $|
 The character of the trivial module is called the trivial character. It sends all elements of $G$ to 1. 
 \end{definition}
 
+
+
+% -----------------------------------------------------
+% LECTURE 11
+% ----------------------------------------------------
+
+
 \section{Lecture 11}
 \subsection{Restrictions on Characters}
 We start with a quick corollary to Lemma 10.11
@@ -1756,5 +1764,76 @@ Note, that we can assign a character to a representation even more naturally as 
 \[\ker\chi_1 = G,\quad \ker\chi_2 = \langle a\rangle, \ker\chi_3 = 1\]
 Therefore the only faithful character of the three is $\chi_3$.
 \end{example}
+
+
+
+
+% -----------------------------------------------------
+% LECTURE 12
+% ----------------------------------------------------
+
+\section{Lecture 12}
+
+\subsection{Some Functional Analysis}
+\begin{definition}
+	Let $V$ be a vector space over $\C$. An \textit{inner product} on $V$ is a function $\langle \cdot, \cdot \rangle: V \times V \rightarrow \C$ satisfying the following for all $u,v,w\in V$, $\alpha\in \C$
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $\langle \alpha u + v, w \rangle = \alpha\langle u, w\rangle + \langle v, w \rangle $ 
+		\item $\langle u, v \rangle = \overline{\langle v, u \rangle}$
+		\item $\langle u, u \rangle \geq 0$
+		\item $\langle u,u \rangle = 0$ if and only if $u = 0$. 
+	\end{enumerate}
+\end{definition}
+	A character is a function (not necessarily a homomorphism) from a group $G$ into $\C$. Denote the set of all functions $G \rightarrow \C$ by $\hom_\Sets(G, \C)$. Recall that $\hom_\Sets(G, \C)$ has a natural vector space structure. We define an inner product on it as follows: For $\varphi,\psi\in \hom_\Sets(G, \C)$ define \[\langle \varphi,\psi \rangle := \frac{1}{|G|}\sum_{g\in G} \varphi(g)\overline{\psi(g)}\]
+\begin{problem}
+	Check that the above function defines an inner product.
+\end{problem}
+
+\begin{lemma}
+	Let $G$ be a finite group and $\chi_1$ and $\chi_1$  two characters. Then 
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $\langle \chi_1, \chi_2 \rangle$ is real
+		\item If there are $\ell$ conjugacy classes with $\{g_i\}_{i = 1}^\ell$ a representative of each class then \[ \langle \chi_1, \chi_2 \rangle = \sum_{i = 1}^\ell \frac{\chi_1(g_i) \overline{\chi_2(g_i)}}{|C_G(g_i)|} \]
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	Recall that for any character $\chi$ and $g\in G$ we have $\chi(g^{-1}) = \overline{\chi(g)}$. Thus \[\langle \chi_1, \chi_2 \rangle = \sum_{g\in G} \chi_1(g)\overline{\chi_2(g)} = \sum_{g\in G} \chi_2(g)\chi_1(g^{-1})= \sum_{g\in G} \chi_1(g)\chi_2(g^{-1}) = \langle \chi_2, \chi_1 \rangle\] and since $\langle \chi_2, \chi_1 \rangle = \overline{\langle \chi_1, \chi_2 \rangle}$ this proves (I).
+	\\\\
+	Denote the conjugacy class of $g_i$ by $g_i^G$. Note that \[ \sum_{g\in G} \chi_1(g) \chi_2(g^{-1}) = |g_i^G| \chi_1(g_i)\chi_2(g_i^{-1})\] since conjugates have the same character. Thus 
+	\begin{align*}
+		\langle \chi_1, \chi_2 \rangle &= \frac{1}{|G|} \sum_{g\in G} \chi_1(g) \chi_2(g^{-1}) \\
+		&= \frac{1}{|G|} \sum_{i = 1}^\ell \sum_{g\in g_i^G} \chi_1(g) \chi_2(g^{-1}) \\
+		&= \frac{1}{|G|}\sum_{i = 1}^\ell |g_i^G|\chi_1(g_i)\chi_2(g_i^{-1}) \\
+		&= \sum_{i = 1}^\ell \frac{\chi_1(g_i) \overline{\chi_2(g_i)}}{|C_G(g_i)|}
+	\end{align*}
+	since $|G| = |C_G(g_i)||g_i^G|$ by the Orbit-Stabiliser Theorem.
+\end{proof}
+
+\subsection{Irreducible Characters form an Orthonormal Set}
+Recall that $\CG = U_1 \oplus ... \oplus U_r$ where each $U_i$ is irreducible. Find $W_1$ and $W_2$ that have no common composition factors such that $\CG = W_1 \oplus W_2$ (for example, take $W_1$ to be the unique trivial submodule, then apply Maschke). Then we can write $1 = e_1 + e_2$ where $e_i\in W_i$. 
+
+\begin{lemma}
+	Suppose $w_i\in W_i$ for $i = 1, 2$. Then $w_ie_j = \delta_{ij}w_i$ where $\delta_{ij}$ is the Kronecker Delta. In particular $e_ie_j = \delta_{ij}e_i$.
+\end{lemma}
+\begin{proof}
+	Observe that $\varphi: W_1 \mapsto W_2 w \mapsto w_2w$ is a homomorphism of $\CG$-modules. But since $W_1$ and $W_2$ have no common components, $\hom(W_1, W_2) = 0$ and thus $w_2e_1 = 0$. Similarly $w_1e_2 = 0$. Now observe $w_1e_1 = w_1- w_1e_2 =w_1$.
+\end{proof}
+
+\begin{proposition}
+		Suppose $\chi$ is the character of $W_1$. Then \[e_1 = \frac{1}{|G|}\sum_{g\in G} \chi(g^{-1})g \]
+\end{proposition}
+\begin{proof}
+	Fix $x\in G$ and consider the endomorphism $\varphi: \CG \rightarrow \CG$ given by \[ w\mapsto w e_1 x^{-1} \] We calculate the trace of $\varphi$ in two ways. Firstly note that for $w_1\in W_1, w_2\in W_2$ we have \[ w_1\varphi = w_1 e_1 x^{-1} = w_1 x^{-1} \] and \[ \varphi w_2 = 0\] Thus the trace of $\varphi$ is simply $\chi(x^{-1})$. 
+	\\\\
+	On the other hand, suppose \[e_1 = \sum_{g\in G} \lambda_g g\] Then \[w \varphi = w\sum_{g\in G} \lambda_g g x^{-1}\] Now we consider the homorphism $w \mapsto wgx^{-1}$ for some $g$. This is simply the regular action of $gx^{-1}$, and thus the trace is $|G|$ if $x = g$ and 0 otherwise. Thus the trace of $\varphi$ is simply $\lambda_x |G|$. 
+	\\\\
+	Now putting it together, we have $\lambda_x |G| = \chi(x^{-1})$ for all $x$. Thus \[e_1= \sum_{x\in G} \lambda_x x = \sum_{g\in G} \chi(g^{-1}) g\]
+\end{proof}
+\begin{corollary}
+	Let $\chi$ be the characteristic of $W_1$. Then \[ \langle \chi, \chi \rangle = \chi(1)\]
+\end{corollary}
+\begin{proof}
+	The coefficient of 1 in $e_1^2$ is \[\frac{1}{|G|^2}\sum_{g \in G} \chi(g^{-1})\chi(g) = \langle \chi, \chi \rangle  \] And the coefficient of 1 in $e_1$ is $\chi(1)$ But since $e_1 = e_1^2$ we have $$\langle \chi, \chi \rangle  = \chi(1)$$ as required.
+\end{proof}
 
 \end{document}
