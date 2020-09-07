@@ -1816,7 +1816,7 @@ Recall that $\CG = U_1 \oplus ... \oplus U_r$ where each $U_i$ is irreducible. F
 	Suppose $w_i\in W_i$ for $i = 1, 2$. Then $w_ie_j = \delta_{ij}w_i$ where $\delta_{ij}$ is the Kronecker Delta. In particular $e_ie_j = \delta_{ij}e_i$.
 \end{lemma}
 \begin{proof}
-	Observe that $\varphi: W_1 \mapsto W_2 w \mapsto w_2w$ is a homomorphism of $\CG$-modules. But since $W_1$ and $W_2$ have no common components, $\hom(W_1, W_2) = 0$ and thus $w_2e_1 = 0$. Similarly $w_1e_2 = 0$. Now observe $w_1e_1 = w_1- w_1e_2 =w_1$.
+	Observe that $\varphi: W_1 \rightarrow W_2$ given by $w \mapsto w_2w$ is a homomorphism of $\CG$-modules. But since $W_1$ and $W_2$ have no common components, $\hom(W_1, W_2) = 0$ and thus $w_2e_1 = 0$. Similarly $w_1e_2 = 0$. Now observe $w_1e_1 = w_1- w_1e_2 =w_1$.
 \end{proof}
 
 \begin{proposition}
@@ -1827,13 +1827,34 @@ Recall that $\CG = U_1 \oplus ... \oplus U_r$ where each $U_i$ is irreducible. F
 	\\\\
 	On the other hand, suppose \[e_1 = \sum_{g\in G} \lambda_g g\] Then \[w \varphi = w\sum_{g\in G} \lambda_g g x^{-1}\] Now we consider the homorphism $w \mapsto wgx^{-1}$ for some $g$. This is simply the regular action of $gx^{-1}$, and thus the trace is $|G|$ if $x = g$ and 0 otherwise. Thus the trace of $\varphi$ is simply $\lambda_x |G|$. 
 	\\\\
-	Now putting it together, we have $\lambda_x |G| = \chi(x^{-1})$ for all $x$. Thus \[e_1= \sum_{x\in G} \lambda_x x = \sum_{g\in G} \chi(g^{-1}) g\]
+	Now putting it together, we have $\lambda_x |G| = \chi(x^{-1})$ for all $x$. Thus \[e_1= \sum_{x\in G} \lambda_x x = \frac{1}{|G|}\sum_{g\in G} \chi(g^{-1}) g\]
 \end{proof}
-\begin{corollary}
+\begin{corollary}\thlabel{inner product equals chi 1}
 	Let $\chi$ be the characteristic of $W_1$. Then \[ \langle \chi, \chi \rangle = \chi(1)\]
 \end{corollary}
 \begin{proof}
 	The coefficient of 1 in $e_1^2$ is \[\frac{1}{|G|^2}\sum_{g \in G} \chi(g^{-1})\chi(g) = \langle \chi, \chi \rangle  \] And the coefficient of 1 in $e_1$ is $\chi(1)$ But since $e_1 = e_1^2$ we have $$\langle \chi, \chi \rangle  = \chi(1)$$ as required.
 \end{proof}
+
+\begin{theorem}
+	Let $U, V$ be two non-isomorphic $\CG$-modules with corresponding characters $\chi_U, \chi_V$. Then 
+	\begin{enumerate}[label=\emph{(\Roman*)}]
+		\item $\langle \chi_U, \chi_U \rangle = 1$
+		\item $\langle \chi_U, \chi_V \rangle = 0$.
+	\end{enumerate} 
+\end{theorem}
+\begin{proof}
+	Let \[\CG = \bigoplus_{i = 1}^N U_i \] be a decomposition of $\CG$. Write $m:= \dim U$ and \[X:= \bigoplus_{U_i \cong U} U_i \cong \bigoplus_{i = 1}^{m} U\] and let $W_1$ denote the direct sum of the remaining $U_i$. Then $\CG = X \oplus W_1$ and $X$ and $W_1$ share no composition factors. Writing $\chi_X$ as the character of $X$ we note that $\chi_X = m\chi_U$ apply \thref{inner product equals chi 1} to get \[ \langle \chi_X, \chi_X \rangle = \chi_X(1) = m \chi_U(1) = m^2\] But since we also have \[\langle \chi_X, \chi_X \rangle = \langle m\chi_U, m\chi_U \rangle = m^2 \langle \chi_U, \chi_U \rangle \] and putting it together we get (I).
+	\\\\
+	To prove (II), we write $n:= \dim V$ and \[Y:= \left(\bigoplus_{U_i \cong V} U_i\right)\oplus X \cong\left(\bigoplus_{i = 1}^{n} V\right) \oplus X \] and let $W_2$ denote the remainder. Then $\CG = Y \oplus W_2$ and $Y$ and $W_2$ share no common factors. Writing $\chi_Y$ as the character of $Y$ we have that $\chi_Y = m \chi_U + n \chi_V$. Once again, applying \thref{inner product equals chi 1} we have \[ \langle \chi_Y, \chi_Y \rangle = \chi_Y(1) = m\chi_U(1) + n\chi_V(1) = n^2 + m^2\] But we also have \[ \langle \chi_Y, \chi_Y \rangle = \langle m\chi_U + n\chi_V, m\chi_U + n\chi_V \rangle = m^2  + 2mn(\chi_U, \chi_V) + n^2  \] And thus $ \langle \chi_U, \chi_V \rangle = 0$
+\end{proof}
+\begin{corollary}
+	Non-isomorphic representations have different characters.
+\end{corollary}
+
+\subsection{Some applications}
+
+An easy consequence of the above theorem is the following. Suppose $V_1,...,V_r$ is a complete set of irreducible modules of $\CG$. Then if \[W = (V_1\oplus...\oplus V_1) \oplus ...\oplus (V_r\oplus ... \oplus V_r)\] where there are $d_i$ copies of each $V_i$ then the character $\chi$ of $V$ satisfies \[\chi = \sum_{i = 1}^r d_i \chi_i]\] where $\chi_i$ is the character of $V_i$, and thus $$ \langle \chi_i, \chi \rangle = \langle \chi, \chi_i \rangle = d_i$$ and $$\langle \chi, chi \rangle = \sum_{i = 1}^r d_i ^2$$
+
 
 \end{document}
