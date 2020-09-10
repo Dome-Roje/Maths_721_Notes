@@ -1857,4 +1857,520 @@ Recall that $\CG = U_1 \oplus ... \oplus U_r$ where each $U_i$ is irreducible. F
 An easy consequence of the above theorem is the following. Suppose $V_1,...,V_r$ is a complete set of irreducible modules of $\CG$. Then if \[W = (V_1\oplus...\oplus V_1) \oplus ...\oplus (V_r\oplus ... \oplus V_r)\] where there are $d_i$ copies of each $V_i$ then the character $\chi$ of $V$ satisfies \[\chi = \sum_{i = 1}^r d_i \chi_i]\] where $\chi_i$ is the character of $V_i$, and thus $$ \langle \chi_i, \chi \rangle = \langle \chi, \chi_i \rangle = d_i$$ and $$\langle \chi, chi \rangle = \sum_{i = 1}^r d_i ^2$$
 
 
+
+% ---------------------------------------------------
+% LECTURE 13
+% ---------------------------------------------------
+
+
+
+\section{Lecture 13}
+
+
+
+\subsection{The Number of Irreducible Characters}
+
+
+\begin{definition}
+A class function on $G$ is a function $\psi : G \to \C$ such that $\psi(x) = \psi(y)$ if $x \sim y$.
+\end{definition}
+
+Note that if $\chi$ is a character of $G$, then it is a class function.
+
+Denote $V = \hom_\Sets(G,\C)$ the vector space of all functions from $G$ to $\C$. Further, define $C = \{\text{all class functions $f : G \to \C$}\}$ which is a vector subspace of $V$. Now, a basis for $C$ is the class functions which takes the value 1 on precisely 1 class and 0 on all other classes.
+
+Hence if $\ell$ is the number of conjugacy classes of $G$, then $\dim C = \ell$.
+
+\begin{theorem}
+The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
+\end{theorem}
+
+\begin{proof}
+Let $\chi_1,\dots,\chi_k$ be the irreducible characters of $G$, and let $\ell$ be the number of conjugacy classes of $G$. As $\chi_1,\dots,\chi_k$ are linearly independent elements of $C$, and so $k \le \ell$. We now prove that $\ell \le k$. Consider the group algebra $\CG$, and let $V_1,\dots,V_k$ be a complete irredundant set of non-isomorphic irreducible $\CG$-modules. Then,
+\[
+    \CG = W_1 \oplus \cdots \oplus W_k,
+\]
+where $W_i = \bigoplus_{k=1}^{\dim V_i} V_i$. Now, as $1 \in \CG$, we have
+\[
+    1 = f_1 + \cdots + f_k,
+\]
+with $f_i \in W_i$. Let $z \in Z(\CG)$, then for each $i$ such that $1 \le i \le k$, there exists $\lambda_i \in \C$ such that $vz = \lambda_i z$. Hence $wz = \lambda_iw$, and so $f_iz = \lambda_if_i$. So
+\begin{align*}
+    z = 1z &= (f_1 + \cdots + f_k)z\\
+    &= f_1z + \cdots + f_kz\\
+    &= \lambda_1 f_1 + \cdots + \lambda_k f_k.
+\end{align*}
+Thus, $Z(\CG) \subseteq \langle f_1,\dots,f_k \rangle$. Now, as class sums are a basis of $Z(\CG)$, we have
+\[
+    \dim Z(\CG) = \ell \le k = \dim \langle f_1,\dots,f_k \rangle,
+\]
+giving $\ell \le k$ as required.
+\end{proof}
+
+\begin{corollary}\thlabel{Cor: Characters are basis for Class}
+The irreducible characters $\chi_1,\dots,\chi_k$ of $G$ form a basis of $C$. Moreover, if $\psi$ is a class function, then
+\[
+    \psi = \sum \lambda_i \chi_i,
+\]
+where $\lambda_i = \inner{\psi}{\chi_i}$.
+\end{corollary}
+
+\begin{lemma}
+Let $g, h \in G$. Then $g \sim h$ if, and only if, $\chi(g) = \chi(h)$ for all characters $\chi$ of $G$.
+\end{lemma}
+
+\begin{proof}
+We have already shown the forward direction, so suppose $\chi(g) = \chi(h)$ for all characters. Then $\psi(g) = \psi(h)$ for all class functions by \thref{Cor: Characters are basis for Class}. So take $\psi$ to be the class function such that $\psi$ is 1 on class $i$ and 0 otherwise. Then $\psi(g) = \psi(h) = 1$ if, and only if, $g$ and $h$ are elements of the $i$th class, and so $g \sim h$.
+\end{proof}
+
+\begin{corollary}
+For every $g \in G$; $g \sim g^{-1}$ if, and only if, $\chi(g)$ is real.
+\end{corollary}
+
+\begin{proof}
+\[
+    g \sim g^{-1} \iff \chi(g) = \chi(g^{-1}) \iff \chi(g) = \overline{\chi(g)}.
+\]
+\end{proof}
+
+\begin{example}
+Take $G = S_3$.
+\[
+    \begin{array}{c|rrr}
+               & (e) & (1,2) & (1,2,3) \\\hline
+        \chi_1 &  1  &   1   &    1    \\
+        \chi_2 &  1  &  -1   &    1    \\
+        \chi_3 &  2  &   0   &   -1    \\
+               &     &       &         \\
+        \psi   &  19 &  -1   &   -2
+    \end{array}
+\]
+Taking the inner product of $\psi$ with $\chi_i$ (for $i=1,2,3$) gives
+\begin{align*}
+    \inner{\psi}{\chi_1} &= \frac{1}{6}\big(19 \cdot 1 + 3(-1)\cdot (1) + 2(-2) \cdot (1)\big)\\
+    &= 2\\
+    \inner{\psi}{\chi_2} &= \frac{1}{6}\big(19 \cdot 1 + 3(-1)\cdot (-1) + 2(-2) \cdot (1)\big)\\
+    &= 3\\
+    \inner{\psi}{\chi_3} &= \frac{1}{6}\big(19 \cdot 2 + 3(-1)\cdot (0) + 2(-2) \cdot (-1)\big)\\
+    &= 7.
+\end{align*}
+Therefore,
+\[
+    \psi = 2\chi_1 + 3 \chi_2 + 7\chi_3,
+\]
+and $\psi$ is a character of $G$. As
+\[
+    \inner{\psi}{\psi} = 2^2 + 3^2 + 7^2 = 62 \neq 1,
+\]
+$\psi$ is reducible.
+\end{example}
+
+
+\subsection{Character Tables}
+
+
+\begin{definition}
+Let $\chi_1,\dots,\chi_k$ irreducible characters of $G$, and $g_1,\dots,g_k$ representation of the conjugacy classes of $G$. Then the $k \times k$ matrix whose $(i,j)$-th entry is
+\[
+    \chi_i(g_j), \qquad 1 \le i,j \le k,
+\]
+is the \textbf{character table} of $G$.
+\end{definition}
+
+\begin{example}
+Let $G = D_6$ be the dihedral group of order 6. Then the character table of $G$ is:
+\[
+    \begin{array}{c|rrr}
+               & 1 & a  & b \\\hline
+        \chi_1 & 1 & 1  & 1 \\
+        \chi_2 & 1 & 1  & -1\\
+        \chi_3 & 2 & -1 & 0
+    \end{array}
+\]
+Note that the character table is invertible.
+\end{example}
+
+The invertibility of the character table for $D_6$ is not a coincidence, and is the case for any finite group.
+
+\begin{lemma}
+The character table of a group $G$ is invertible.
+\end{lemma}
+
+\begin{proof}
+As $\chi_1,\dots,\chi_k$ are irreducible characters, the rows of the character table are linearly independent.
+\end{proof}
+
+\begin{example}\thlabel{Ex: C.T. for Cyclic 3}
+The character table for $G = C_3$ the cyclic group of order 3 is:
+\[
+    \begin{array}{c|lll}
+               & 1 & a        & a^2  \\\hline
+        \chi_1 & 1 &    1     & 1 \\
+        \chi_2 & 1 & \omega   & \omega^2\\
+        \chi_3 & 1 & \omega^2 & \omega
+    \end{array}
+\]
+Where $\omega = e^{2\pi i/3}$ is a third root of unity.
+\end{example}
+
+
+
+\subsection{Orthogonality Relations}
+
+
+Recall if $\chi_r$, $\chi_s$ are irreducible characters; then
+\[
+    \inner{\chi_r}{\chi_s} = \delta_{rs},
+\]
+or equivalently
+\[
+    \sum_{i=1}^k \frac{\chi_r(g_i)\overline{\chi_s(g_i)}}{|C_g(g_i)|} = \delta_{rs}.
+\]
+This gives a relationship between rows of the character table.
+
+\begin{example}
+If $\omega = e^{2\pi i/3}$ is a third root of unity, then $1 + \omega + \omega^2 = 0$. This confirms the orthogonality relation in the character table of $C_3$ given in \thref{Ex: C.T. for Cyclic 3}.
+\end{example}
+
+\begin{lemma}\thlabel{Lem: Orthogonality Cond. of C.T.}
+Let $\chi_1,\dots,\chi_k$ irreducible characters of $G$ and $g_1,\dots,g_k$ are representatives of the conjugacy classes of $G$. Let $r,s \in \{1,\dots,k\}$, then we have:
+\begin{enumerate}[label=\emph{(\Roman*)}]
+    \item \emph{(Row orthogonality)}
+    \[
+        \sum_{i=1}^k \frac{\chi_r(g_i)\overline{\chi_s(g_i)}}{|C_g(g_i)|} = \delta_{rs}.
+    \]
+    \item \emph{(Column orthogonality)}
+    \[
+        \sum_{i=1}^k \chi_i(g_r)\overline{\chi_i(g_s)} = \delta_{rs}|C_G(g_r)|.
+    \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have already shown (I). So for (II), for $1 \le s \le k$ let $\psi_s$ be the class function satisfying
+\[
+    \psi_s(g_r) = \delta_{rs}, \qquad (1 \le r \le k).
+\]
+Then
+\[
+    \psi_s = \sum_{i=1}^k \lambda_i \chi_i, \qquad \lambda_i \in \C.
+\]
+Now, by definition of the inner product, we have
+\[
+    \lambda_i = \inner{\psi_s}{\chi_i} = \frac{1}{|G|} \sum_{g \in G}\psi_s(g) \overline{\chi_i(g)}.
+\]
+By construction, $\psi_s(g) = 1$ if $g \sim g_s$ and $\psi_s(g) = 0$ otherwise. Now, by the orbit-stabiliser theorem, there are $|G|/|C_G(g_s)|$ elements of $G$ conjugate to $g_s$. So
+\[
+    \lambda_i = \frac{1}{|G|} \sum_{g \in G}\psi_s(g) \overline{\chi_i(g)} = \frac{\overline{\chi_i(g_s)}}{|C_G(g_s)|}.
+\]
+Hence
+\begin{align*}
+    \delta_{rs} &= \psi_s(g_r)\\
+    &= \sum_{i=1}^k\lambda_i\chi_i(g_r)\\
+    &= \sum_{i=1}^k \frac{\chi_i(g_r)\overline{\chi_i(g_s)}}{|C_G(g_s)|},
+\end{align*}
+which implies that
+\[
+    \sum_{i=1}^k \chi_i(g_r)\overline{\chi_i(g_s)} = \delta_{rs}|C_G(g_s)| = \delta_{rs}|C_G(g_r)|.
+\]
+\end{proof}
+
+\begin{example}
+Let $G = D_6$ be the dihedral group of order 6. Then the character table of $G$ is:
+\[
+    \begin{array}{c|rrr}
+        g_i        & 1 & a  & b  \\\hline
+        |C_G(g_i)| & 6 & 3  & 2 \\\hline
+        \chi_1     & 1 & 1  & 1 \\
+        \chi_2     & 1 & 1  & -1\\
+        \chi_3     & 2 & -1 & 0
+    \end{array}
+\]
+A routine calculation shows that the character table satisfies the required orthogonality conditions of \thref{Lem: Orthogonality Cond. of C.T.}.
+\end{example}
+
+\begin{example}
+Let $G = A_4$. Then
+\[
+    \begin{array}{c|cccc}
+        g_i        & 1  & (1,2)(3,4) & (1,2,3)  & (1,3,2)  \\\hline
+        |C_G(g_i)| & 12 &      4     &    3     &    3\\\hline
+        \chi_1     & 1  &      1     &    1     &    1\\
+        \chi_2     & 1  &      1     &  \omega  &  \omega^2\\
+        \chi_3     & 1  &      1     & \omega^2 &  \omega\\
+        \chi_4     & d  &      x     &    y    &    z
+    \end{array}
+\]
+Using the orthogonality conditions of \thref{Lem: Orthogonality Cond. of C.T.}, we have in the first column
+\[
+    1^2 + 1^2 + 1^2 + d^2 = 12 \implies d^2 = 0 \implies d = 3.
+\]
+Hence, comparing column 1 versus column 2 gives
+\[
+    1 \cdot 1 + 1 \cdot 1 + 1 \cdot 1 + 3\overline x = 0 \implies \overline x = -1 \implies x = -1.
+\]
+Similarly, comparing columns 3 and 4 against column 1 gives $y = z = 0$. So the final line of the character table is
+\[
+    \begin{array}{c|clcc}
+        \chi_4 & 3 & -1 & 0 & 0  \\
+    \end{array}
+\]
+Therefore the character table of $A_4$ is:
+\[
+    \begin{array}{c|cccc}
+                   & 1  & (1,2)(3,4) & (1,2,3)  & (1,3,2)  \\\hline
+        \chi_1     & 1  &      1     &    1     &    1\\
+        \chi_2     & 1  &      1     &  \omega  &  \omega^2\\
+        \chi_3     & 1  &      1     & \omega^2 &  \omega\\
+        \chi_4     & 3  &     -1     &    0     &    0
+    \end{array}
+\]
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------
+% LECTURE 14
+% ------------------------------------------------------------
+
+
+\section{Lecture 14}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------
+% LECTURE 15
+% ------------------------------------------------------------
+
+
+\section{Lecture 15}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------
+% LECTURE 16
+% ------------------------------------------------------------
+
+
+\section{Lecture 16}
+
+
+
+
+\subsection{Square of a Character}
+
+
+
+
+Let $V$ be a $\CG$ module with character $\chi$, then $V \otimes V$ has character $\chi^2$. Suppose $v_1,\dots,v_n$ is a basis for $V$, and define the linear map
+\begin{align*}
+    T : V \otimes V &\to V \otimes V\\
+    v_i \otimes v_j &\mapsto v_j \otimes v_i,
+\end{align*}
+and extending linearly,
+\[
+    \Big(\sum \lambda_{ij}(v_i \otimes v_j)\Big)T = \sum \lambda_{ij}(v_j \otimes v_i).
+\]
+Hence for all $w,v \in V$, we have
+\[
+    (v \otimes w)T = w \otimes v,
+\]
+which shows that $T$ is independent of the choice of basis.
+
+We define subsets $S,A \subseteq V \otimes V$, by
+\begin{align*}
+    S &= \{x \in V \otimes V \mid xT = x\},\\
+    A &= \{x \in V \otimes V \mid xT = -x\}.
+\end{align*}
+Clearly $S,A$ are subspaces of $V \otimes V$. In fact, as the next lemma shows, they are actually submodules of $V \otimes V$.
+
+\begin{lemma}
+As defined previously, both $S$ and $A$ are submodules of $V \otimes V$. Moreover, $V \otimes V = S \oplus A$.
+\end{lemma}
+
+\begin{proof}
+It is clear from the definition of $T$ that it is a $\CG$-homomorphism from $V \otimes V$ to itself. So for $x \in S$, $y \in A$, and $g \in G$ we have
+\begin{align*}
+    (xg)T &= (xT)g = xg \in S,\\
+    (yg)T &= (yT)g = -yg \in A.
+\end{align*}
+This shows that $S,A < V \otimes V$. Now, if $x \in S \cap A$, then $x = xT = -x$ and so $x = 0$, which shows that $A$ and $S$ intersect trivially. As $T^2 = 1$, for all $x \in V \otimes V$, it is clear that
+\[
+    \frac{1}{2}(x - xT) \in A, \qquad \frac{1}{2}(x+xT) \in S.
+\]
+Moreover,
+\[
+    x = \frac{1}{2}(x+xT) + \frac{1}{2}(x - xT),
+\]
+showing that $V \otimes V = S \oplus A$.
+\end{proof}
+
+\begin{definition}
+We call $S$ the \textbf{symmetric square module}, and call $A$ the \textbf{antisymmetric}, or \textbf{alternating square module}.
+\end{definition}
+
+Elements of $S$ have the form
+\[
+    v \otimes w + w \otimes v,
+\]
+while elements of $A$ have the form
+\[
+    v \otimes w - w \otimes v.
+\]
+
+\begin{lemma}
+Let $v_1,\dots,v_n$ be a basis for $V$.
+\begin{enumerate}[label=\emph{(\Roman*)}]
+    \item $S$ has basis $v_i \otimes v_j + v_j \otimes v_i$ for $1 \le i \le j \le n$, and so $\dim S = n(n+1)/2$.
+    \item $A$ has basis $v_i \otimes v_j - v_j \otimes v_i$ for $1 \le i < j \le n$, and so $\dim A = \binom{n}{2} = n(n-1)/2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have that the set
+\[
+    \{v_i \otimes v_j + v_j \otimes v_i \mid 1 \le i \le j \le n\}
+\]
+is linearly independent in $S$, and
+\[
+    \{v_i \otimes v_j - v_j \otimes v_i \mid 1 \le i < j \le n\}
+\]
+is linearly independent in $A$. Thus,
+\[
+    \dim \ge \frac{n(n+1)}{2}, \qquad \dim A \ge \frac{n(n-1)}{2}.
+\]
+As
+\[
+    \dim V \otimes V = n^2 = \dim A + \dim S,
+\]
+both equalities hold.
+\end{proof}
+
+As a result of the previous lemma, we have that if $\chi_S$ is the character of $S$ and $\chi_A$ is the character of $A$, then
+\[
+    \chi^2 = \chi_S + \chi_A.
+\]
+
+\begin{lemma}\thref{Lem: Formula Sym and ASym Char}
+For $g \in G$, we have
+\begin{align*}
+    \chi_S(g) &= \frac{1}{2}\big(\chi^2(g) + \chi(g^2)\big)\\
+    \chi_A(g) &= \frac{1}{2}\big(\chi^2(g) - \chi(g^2)\big).
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Choose a basis of $V$ $e_1,\dots,e_n$ such that $e_ig = \lambda_i e_i$. Then
+\[
+    (e_i \otimes e_j - e_j \otimes e_i)g = \lambda_i\lambda_j(e_i \otimes e_j - e_j \otimes e_i),
+\]
+which implies that
+\[
+    \chi_A(g) = \sum_{i<j}\lambda_i\lambda_j.
+\]
+As $e_ig^2 = \lambda_i^2e_i$, we have
+\[
+    \chi(g) = \sum \lambda_i, \qquad \chi(g^2) = \sum \lambda_i^2.
+\]
+Hence
+\begin{align*}
+    \chi^2(g) = \big(\chi(g)\big)^2 &= \Big(\sum \lambda_i\Big)^2\\
+    &= \sum \lambda_i^2 + 2\sum_{i < j}\lambda_i \lambda_j\\
+    &= \chi(g^2) + 2\chi_A(g),
+\end{align*}
+which implies that
+\[
+    \chi_A(g) = \frac{1}{2}\big(\chi^2(g) - \chi(g^2)\big).
+\]
+As $\chi^2 = \chi_S + \chi_A$, we have
+\[
+    \chi_S(g) = \chi^2(g) - \chi_A(g) = \frac{1}{2}\big(\chi^2(g) + \chi(g^2)\big).
+\]
+\end{proof}
+
+
+\begin{example}
+Take $G = S_4$ and $\chi = \chi_4$. Then using \thref{Lem: Formula Sym and ASym Char}, we obtain
+\[
+    \begin{array}{c|ccccc}
+               & (e) & (1,2) & (1,2,3) & (1,2)(3,4) & (1,2,3,4) \\\hline
+        \chi   &  3  &   1   &    0    &     -1     &     -1    \\
+        \chi_S &  6  &   2   &    0    &      2     &      0\\
+        \chi_A &  3  &  -1   &    0    &     -1     &      1
+    \end{array}
+\]
+Hence we find that
+\begin{align*}
+    \chi_S &= \chi_1 + \chi_3 + \chi_4,\\
+    \chi_A &= \chi_5,
+\end{align*}
+and so $\chi_S$ is reducible while $\chi_A$ is irreducible.
+\end{example}
+
+This gives us a method to produce new irreducible characters:
+\begin{enumerate}[label=(\arabic*)]
+    \item Given $\chi$, write $\chi^2 = \chi_S + \chi_A$, and use the inner product to deduce whether $\chi_A$ or $\chi_S$ are irreducible.
+
+    \item If we obtain $\psi$ as a new character, then write $\psi^2 = \psi_S + \psi_A$.
+
+    \item Repeat.
+\end{enumerate}
+
+
+\textcolor{red}{ADD EXAMPLE ONCE PREVIOUS LECTURES ARE DONE SO I CAN UNDERSTAND IT.}
+
+
+
+
+\end{document}
+
+
 \end{document}
