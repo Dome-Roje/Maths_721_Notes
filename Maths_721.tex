@@ -2146,17 +2146,206 @@ Therefore the character table of $A_4$ is:
 
 \section{Lecture 14}
 
+\subsection{Normal Subgroups and Lifted Characters}
+Suppose that $G$ is a group and $N\triangleleft G$ is a normal subgroup. We wish to establish a relationship between the characters of the quotient group $G/N$ and the characters of $G$ itself by ``lifting" the characters of $G/N$.
+
+\begin{lemma}
+Let $N\triangleleft G$ and $\tilde{\chi}$ be a character of $G/N$. Define $\chi:G\to\mathbb{C}$ by $\chi(g) = \tilde{\chi}(Ng)$. Then $\chi$ is a character of $G$ with the same degree as $\tilde{\chi}$.
+\end{lemma}
+\begin{proof}
+Let $\tilde\rho: G/N \to GL(n, \mathbb{C})$ be the representation of $G/N$ with character $\tilde\chi$. The function $\rho:G\to GL(n,\mathbb{C})$ given by the composition of $\tilde\rho$ and the map $g\to Ng$ is a homomorphism and thus $\rho$ is a representation of $G$. The character $\chi$ of $G$ satisfies
+\[
+	\chi(g) = \tr(g\rho) = \tr((Ng)\tilde\rho) = \tilde\chi(Ng) 
+\]
+and $\chi(1) = \tilde\chi(N)$ so they have the same degree.
+\end{proof}
+
+\begin{definition}
+If $\tilde\chi$ is a character of $G/N$ then the character $\chi$ of $G$ given by $\chi(g) = \tilde\chi(Ng)$ is called the lift of $\tilde\chi$ to $G$.
+\end{definition}
+
+We now relate the characters of $G/N$ with those of $G$ in the following theorem.
+
+\begin{theorem} ~
+\begin{enumerate}[label=\emph{(\Roman*)}]
+	\item The map taking a character of $G/N$ to its lift is a bijection between the characters of $G/N$ and the characters of $G$ whose kernels contain $N$.
+	\item	This map is a bijection between the irreducible characters of $G/N$ and the irreducible characters of $G$ with $N$ in their kenels.
+\end{enumerate} 
+
+\end{theorem}
+
+\begin{proof}
+	For (I) Let $\tilde\chi$ be a character of $G/N$ and $\chi$ its lift. Pick $k\in N$. We then have $\chi(k) = \tilde\chi(kN) = \tilde\chi(N) = \chi(1)$. Thus $k\in\ker\chi$ and $N\leq\ker\chi$.
+
+	Now suppose $\chi$ is a character of $G$ with $N\leq\ker\chi$ and $\rho:G\to GL(n,\mathbb{C})$ its corresponding representation. Suppose $g,h\in G$ with $Ng = Nh$. Since $N$ is in the kernel of $\rho$, we see that $h\rho = g\rho$. Thus we define a funciton $\tilde\rho: G\to GL(n,\mathbb{C})$ defined by $(Hg)\tilde\rho = g\rho$. It is then a simple matter to show that $\tilde\rho$ is a homomorphism with character that has lift $\chi$.
+
+	For (II) let $U\leq \mathbb{C}^n$ and note
+\[
+	u(g\rho)\in U \quad \forall u\in U \iff u(gN)\tilde\rho \in U \quad \forall u\in U.
+\]
+	Therefore $U$ is a $\mathbb{C}G$-submodule of $\mathbb{C}^n$ if and only if $U$ is a $\mathbb{C}(G/N)$-submodule of $\mathbb{C}^n$. Thus $\rho$ is irreducible if and only if $\tilde\rho$ is irreducible and finally $\chi$ is irreducible if and only if $\tilde\chi$ is irreducible.
+\end{proof}
+
+\begin{example}
+Let $G=S_4$ and $N = V_4 < S_4$ so that $G/N \simeq D_6$. As a subgroup of $S_4$ we have
+\[
+	V_4 = \{1, (1\;2)(3\;4), (1\;3)(2\;4), (1\;4)(2\;3)\}.
+\]
+and 
+\[
+	G/N \simeq D_6.
+\]
+The character table of $G/N$ is 
+	
+\[
+    \begin{array}{c|ccc}
+                   & N  & N(1\;2)    & N(1\;2\;3)  \\\hline
+        \tilde\chi_1     & 1  &      1     &    1\\
+        \tilde\chi_2     & 1  &     -1     &    1\\
+        \tilde\chi_3     & 2  &      0     &   -1\\
+    \end{array}
+\]
+We then lift these to obtain three irreducible characters of $S_4$
+\[
+    \begin{array}{c|ccccc}
+	    	   & 1  &  (1\;2)    &  (1\;2\;3)  &  (1\;2)(3\;4)  &  (1\;2\;3\;4) \\\hline
+	\chi_1     & 1  &      1     &    1        &        1       &        1      \\
+	\chi_2     & 1  &     -1     &    1        &        1       &       -1      \\
+	\chi_3     & 2  &      0     &   -1        &        2       &        0      \\
+    \end{array}
+\]
+
+\end{example}
 
 
 
+\subsection{Finding Normal Subgroups}
+
+We now turn our attention to the information we can obtain from a completed character table. In fact, we can find all normal subgroups. We achieve this by looking at the kernel of the characters.
+
+\begin{lemma}
+	Let $N\triangleleft G$. There exist characters $\chi_1,\ldots,\chi_k$ such that $N = \cap_{i=1}^k \ker \chi_i$.
+\end{lemma}
+
+\begin{proof}
+	Let $\tilde\chi_1,\ldots,\tilde\chi_k$ be the irreducible characters of $G/N$. If $gN\in\ker\tilde\chi_i$ for all $1\leq i\leq k$ then $gN\sim N$ so $gN = N$. Thus $\cap_{i=1}^k \ker\tilde\chi_i = \{N\}$. Let $\chi_i$ be the lift of $\tilde\chi_i$. If $g\in N$ then $\chi_i(g) = \tilde\chi_i(N) = \chi_i(1)$. Thus $N \subseteq \cap_{i=1}^k\ker\chi_i$. Now suppose $g\in\cap_{i=1}^k\chi_i$. Then $gN\in\cap_{i=1}^k\tilde\chi_i = \{N\}$. Thus $gN=N$ so $g\in N$. Therefore $\cap_{i=1}^k\chi_i = N$.
+\end{proof}
+
+From this lemma we can obtain results about the simplicity of $G$.
+
+\begin{theorem}
+	$G$ is not simple if and only if there is a non-trivial irreducible character $\chi$ of $G$ such that $\chi(g) = \chi(1)$ for some non-trivial $g\in G$.
+\end{theorem}
+
+\begin{proof}
+We begin with the reverse direction. Suppose that $\chi$ is a non-trivial irreducible character of $G$ and there exists $g\in G$, $g\neq 1$, such that $\chi(g) = \chi(1)$. Let $\rho$ be the corresponding representation. Then since $\rho$ is irreducble $\ker\rho \neq G$ but $\chi$ has non-trivial kernel and hence $\ker\chi = \ker\rho \triangleleft G$ is a non-trivial normal subgroup of $G$. Therefore $G$ is not simple.
+
+Now suppose $G$ is not simple and thus has non-trivial normal subgroup $N\triangleleft G$. By the previous lemma there exists irreducible character $\chi$ such that $\ker\chi \neq \{1\}$ and $\ker\chi\neq G$. Thus $\chi$ is non-trivial and there exists $1\neq g\in\ker\chi$ so $\chi(g) = \chi(1)$.
+\end{proof}
 
 
 
+\subsection{Linear Characters}
 
+Recall that a linear character is a character of degree 1. Also recall from group theory, the notion of a derived subgroup
 
+\begin{definition}
+Let $G$ be a group, define the derived subgroup by $G^\prime = \langle [x,y] \mid x,y\in G\rangle$.
+\end{definition}
 
+\begin{remark}
+The derived group is a normal subgrouop.
+\end{remark}
+\begin{proof}
+	Pick $x,y,g\in G$ and note $[x,y]^g = g^{-1}x^{-1}y^{-1}xyg = (x^{-1})^g(y^{-1})^gx^gy^g = [x^g,y^g]$. Thus $G^\prime$ is normal.
+\end{proof}
 
+\begin{remark}
+Let $N\triangleleft G$; then $G^\prime\leq N$ if and only if $G/N$ is abelian. Thus $G^\prime$ is the smallest normal subgroup with an abelian factor group.
+\end{remark}
+\begin{proof}
+	Suppose $G^\prime\leq N$. Then for all $g,h\in G$, $[g,h]\in G\leq N$ so $[gN, hN] = [g,h]N = N$. Thus $G/N$ is abelian.
 
+	Conversely suppose that $G/N$ is abelian. Then for all $g,h\in G$, $[gN, hN] = [g,h]N = N$ so $[g,h]\in N$. Thus $N$ contains the generators of $G^\prime$ and therefore $G^\prime\leq N$. 
+\end{proof}
+
+We can now make use of the derived group to find linear characters of $G$. 
+
+\begin{lemma}
+Let $\chi$ be a linear character of $G$. Then $G^\prime \leq \ker\chi$.
+\end{lemma}
+\begin{proof}
+	Since $\chi$ is a linear character, it is a homomorphism from $G$ to $\mathbb{C}^*$ and so for all $g,h\in G$ we have $\chi([g,h]) = [\chi(g), \chi(h)] = 1$. Thus $G^\prime\leq \ker\chi$.
+\end{proof}
+
+\begin{lemma}
+The linear characters of $G$ are lifts of the irreducible characters of $G/G^\prime$. In particular, the number of distinct linear characters of $G$ is $\left|G/G^\prime\right|$ and so divides $|G|$.
+\end{lemma}
+
+\begin{proof}
+Let $m = \left|G/G^\prime\right|$. Since $G/G^\prime$ is abelian, it has $\tilde\chi_1,\ldots,\tilde\chi_m$ unique irreducible linear characters. Their lifts $\chi_1,\ldots,\chi_m$ also have degree 1. These are precisely the irreducible characters of $G$ with $G^\prime\leq\ker\chi$. Thus these are the irreducible linear characters of $G$.
+\end{proof}
+
+\begin{example}
+Let $G=S_n$. We know $G^\prime = A_n$ and thus $H = S_n/A_n \simeq C_2$. The irreducible characters of $C_2$ are
+\[
+	\tilde\chi_1(A_n(1\;2)) = 1, \quad\text{and}\quad \tilde\chi_2(A_n(1\;2)) = -1.
+\]
+Lifting these to $S_n$ we find that the linear characters of $S_n$ are the trivial character, and the sign character respectively.
+\end{example}
+
+Once we've found all of the linear characters of a group, we can use the knowledge to determine more characters. This is demonstrated in the following lemma; allowing us to multiply characters in some cases.
+
+\begin{lemma}
+	Let $\chi$ be a character and $\lambda$ a linear character. Then the function $\chi\lambda: G\to\mathbb{C}$ defined by $\chi\lambda(g) = \chi(g)\lambda(g)$ is a character. Moreover, $\chi$ is irreducible if and only if $\chi\lambda$ is irreducible.
+\end{lemma}
+
+\begin{proof}
+	Let $\chi$ be a character of $G$ and $\lambda$ a linear character. Suppose $\rho$ is the representation corresponding to $\chi$ and note that since both $\rho$ and $\lambda$ are homomorphisms, the function $\rho\lambda: G\to GL(n,\mathbb{C})$ defined by $g \to \lambda(g)(g\rho)$ is a homomorphism and thus a representation of $G$. Moreover $g(\rho\lambda)$ has trace $\lambda(g)\tr(g\rho) = \chi(g)\lambda(g)$. Thus $\rho\lambda$ has character $\chi\lambda$.
+
+Now note that since $\lambda(g)$ is a root of unity for all $g\in G$ so $\lambda(g)\overline{\lambda(g)} = 1$. We then obtain
+\begin{align*}
+	\langle \chi\lambda, \chi\lambda \rangle &= \frac{1}{|G|}\sum_{g\in G}\chi(g)\lambda(g)\overline{\chi(g)\lambda(g)}\\
+	&= \frac{1}{|G|}\sum_{g\in G}\chi(g)\overline{\chi(g)}\\
+	&= \langle \chi, \chi \rangle.
+\end{align*}
+Therefore $\chi\lambda$ is irreducible if and only if $\chi$ is irreducible.
+\end{proof}
+
+\begin{example}
+Let us once again consider the character table of $S_4$. So far we have looked at the characters of the quotient $S_4/A_4$ to obtain three irreducible characters
+\[
+    \begin{array}{c|ccccc}
+	    	   & 1  &  (1\;2)    &  (1\;2\;3)  &  (1\;2)(3\;4)  &  (1\;2\;3\;4) \\\hline
+	\chi_1     & 1  &      1     &    1        &        1       &        1      \\
+	\chi_2     & 1  &     -1     &    1        &        1       &       -1      \\
+	\chi_3     & 2  &      0     &   -1        &        2       &        0      \\
+    \end{array}
+\]
+However we also know $\chi_4(g) = |\text{fix}(g)|-1$ is a character with entries
+\[
+	\chi_4 \mid 3 \quad 1 \quad 0 \quad -1 \quad -1
+\]
+In fact 
+\[
+	\langle \chi, \chi \rangle = \frac{9}{24} + \frac{1}{4} + \frac{0}{9} + \frac{1}{8} + \frac{1}{4} = 1
+\]
+and therefore $\chi_4$ is irreducible. Now take linear character $\chi_2$. We can obtain another character
+\[
+	\chi_5 = \chi_4\chi_2 \mid 3 \quad -1 \quad 0 \quad -1 \quad 1
+\]
+which is distinct from our other characters and is irreducible because $\chi_4$ is irreducible and $\chi_2$ is linear. Thus we complete the table of five irreducible characters.
+\[
+    \begin{array}{c|ccccc}
+	    	   & 1  &  (1\;2)    &  (1\;2\;3)  &  (1\;2)(3\;4)  &  (1\;2\;3\;4) \\\hline
+	\chi_1     & 1  &      1     &    1        &        1       &        1      \\
+	\chi_2     & 1  &     -1     &    1        &        1       &       -1      \\
+	\chi_3     & 2  &      0     &   -1        &        2       &        0      \\
+	\chi_4     & 3  &      1     &    0        &       -1       &       -1      \\
+	\chi_5     & 3  &     -1     &    0        &       -1       &        1      \\
+    \end{array}
+\]
+\end{example}
 
 
 
