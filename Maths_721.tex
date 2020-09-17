@@ -1854,7 +1854,21 @@ Recall that $\CG = U_1 \oplus ... \oplus U_r$ where each $U_i$ is irreducible. F
 
 \subsection{Some applications}
 
-An easy consequence of the above theorem is the following. Suppose $V_1,...,V_r$ is a complete set of irreducible modules of $\CG$. Then if \[W = (V_1\oplus...\oplus V_1) \oplus ...\oplus (V_r\oplus ... \oplus V_r)\] where there are $d_i$ copies of each $V_i$ then the character $\chi$ of $V$ satisfies \[\chi = \sum_{i = 1}^r d_i \chi_i]\] where $\chi_i$ is the character of $V_i$, and thus $$ \langle \chi_i, \chi \rangle = \langle \chi, \chi_i \rangle = d_i$$ and $$\langle \chi, chi \rangle = \sum_{i = 1}^r d_i ^2$$
+An easy consequence of the above theorem is the following. Suppose $V_1,...,V_r$ is a complete set of irreducible modules of $\CG$. Then if \[W = (V_1\oplus...\oplus V_1) \oplus ...\oplus (V_r\oplus ... \oplus V_r)\] where there are $d_i$ copies of each $V_i$ then the character $\chi$ of $V$ satisfies \[\chi = \sum_{i = 1}^r d_i \chi_i \] where $\chi_i$ is the character of $V_i$, and thus $$ \langle \chi_i, \chi \rangle = \langle \chi, \chi_i \rangle = d_i$$ and $$\langle \chi, \chi \rangle = \sum_{i = 1}^r d_i ^2$$
+
+\begin{example}
+	Recall we had the following representations of $S_3 = \langle (1, 2, 3), (1, 2) \rangle$ 
+	\begin{align*}
+		&\varphi_1: (1, 2, 3) \mapsto 1 & (1, 2) \mapsto 1\\
+		&\varphi_2: (1, 2, 3) \mapsto 1 & (1, 2) \mapsto -1\\
+		&\varphi_3: (1, 2, 3) \mapsto \begin{pmatrix*}
+		\omega & 0 \\ 0 & \omega^{-1}
+		\end{pmatrix*} & (1, 2) \mapsto \begin{pmatrix*}
+		0 & 1 \\ 1 & 0
+		\end{pmatrix*}
+	\end{align*}
+	Let $\chi_i$ denote the character associated to $\varphi_i$. x
+\end{example}
 
 
 \end{document}
